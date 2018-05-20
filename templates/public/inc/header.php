@@ -87,12 +87,12 @@
                     <select class="danhmuc-search col-sm-3" name="danhmuc">
                         <option value="0">Tất cả</option>
                         <?php
-                            $result = $DB->select("SELECT * FROM danhmucsanpham");
+                            $result = $DB->select("SELECT * FROM category");
 
                             foreach ($result as $category) { 
                         ?>
-                            <option value="<?php echo $category['id_danhmuc']?>">
-                                <?php echo $category['tendanhmuc'] ?>
+                            <option value="<?php echo $category['id']?>">
+                                <?php echo $category['name'] ?>
                             </option>
                         <?php }?>
                     </select>
