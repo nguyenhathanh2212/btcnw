@@ -1,0 +1,31 @@
+# mở chức năng rewrite 
+RewriteEngine ON
+# định nghĩa thư mục gốc của web
+RewriteBase /
+# bắt đầu viết luật URL 
+
+# tintuc
+RewriteRule ^tin-tuc$ tintuc.php
+
+#category-page
+RewriteRule ^category/(.*)-([0-9]*)-([0-9]*)$ category.php?idCate=$2&idpage=$3
+#category
+RewriteRule ^category/(.*)-([0-9]*)$ category.php?idCate=$2
+#search-page
+RewriteRule ^search/(.*)-([0-9]*)-([0-9]*)$ search.php?str=$1&idCat=$2&idpage=$3
+#search
+RewriteRule ^search/(.*)-([0-9]*)$ search.php?str=$1&idCat=$2
+#detail
+RewriteRule ^detail/(.*)-([0-9]*).html$ detail.php?id=$2
+#timeline
+RewriteRule ^timeline/(.*)-([0-9]*)$ timeline.php?idUser=$2
+#edit
+RewriteRule ^edit-user/edit-([0-9]*)$ edituser.php?idUser=$1
+#xam
+RewriteRule ^abouts$ abouts.php
+RewriteRule ^contact$ contact.php
+RewriteRule ^guide$ guide.php
+RewriteRule ^postnews$ postnews.php
+RewriteRule ^support$ support.php
+RewriteRule ^login$ login.php
+RewriteRule ^404$ 404.php
