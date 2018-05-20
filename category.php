@@ -14,13 +14,13 @@
 			<span class="fa fa-caret-right"></span>
 			<?php
                 if($idCate != 11){
-                	$queryCate = "SELECT * FROM danhmucsanpham WHERE id_danhmuc={$idCate}";
+                	$queryCate = "SELECT * FROM category WHERE id = {$idCate}";
                 	$resultCate = $DB->select($queryCate)[0];
 
-	                $categoryName = $resultCate['tendanhmuc'];
-	                $id = $resultCate['id_danhmuc'];
+	                $categoryName = $resultCate['name'];
+	                $id = $resultCate['id'];
                 }else{
-                	$categoryName='TIN TOÀN QUỐC';
+                	$categoryName = 'TIN TOÀN QUỐC';
                 }
             ?>
 			<a href=""><?php echo $categoryName ?></a>
@@ -28,14 +28,14 @@
 				if(!empty($_GET['filter'])) {
 					$filter = $_GET['filter'];
 				} else {
-					$filter=1;
+					$filter = 1;
 				}
 
 				if ($idCate == 11) {
-					$queryCate = "SELECT COUNT(id_tinraovat) AS sotin FROM tinraovat";
+					$queryCate = "SELECT COUNT(id) AS sotin FROM recruitment";
 				} else {
-					$queryCate = "SELECT COUNT(id_tinraovat) AS sotin FROM tinraovat 
-						WHERE id_danhmucsanpham = {$idCate}";
+					$queryCate = "SELECT COUNT(id) AS sotin FROM recruitment 
+						WHERE category_id = {$idCate}";
 				}
 
 					$resultCate = $DB->select($queryCate);
@@ -57,9 +57,9 @@
 				</div>	
 				<div class="select-sort-new">
 					<ul>
-						<li><a href="/category.php?idCate=<?php echo $idCate ?>&filter=1" <?php if($filter==1){echo "class='sort-active'";} ?> >Tin mới</a></li>
-						<li><a href="/category.php?idCate=<?php echo $idCate?>&filter=2"  <?php if($filter==2){echo "class='sort-active'";}?> >Giá Thấp</a></li>
-						<li><a href="/category.php?idCate=<?php echo $idCate?>&filter=3"  <?php if($filter==3){echo "class='sort-active'";}?>>Giá Cao</a></li>
+						<li><a href="/category.php?idCate=<?php echo $idCate ?>&filter=1" <?php if($filter == 1){echo "class='sort-active'";} ?> >Tin mới</a></li>
+						<li><a href="/category.php?idCate=<?php echo $idCate?>&filter=2"  <?php if($filter == 2){echo "class='sort-active'";}?> >Giá Thấp</a></li>
+						<li><a href="/category.php?idCate=<?php echo $idCate?>&filter=3"  <?php if($filter == 3){echo "class='sort-active'";}?>>Giá Cao</a></li>
 					</ul>
 				</div>
 			</div>
@@ -68,7 +68,7 @@
 				<ul>
 					<?php
 						if ($idCate != 11) {
-							$where = " WHERE id_danhmucsanpham={$idCate} ";
+							$where = " WHERE category_id = {$idCate} ";
 						} else {
 							$where = '';
 						}
@@ -76,45 +76,45 @@
 						$offset = ($currentPage - 1) * $rowCount; 
 						switch ($filter) {
 							case 1:
-								$queryNews = "SELECT tinraovat.*,users.username 
-								FROM tinraovat
-								INNER JOIN users ON tinraovat.id_user=users.id_user "
+								$queryNews = "SELECT recruitment.*, users.username 
+								FROM recruitment
+								INNER JOIN users ON recruitment.user_id = users.id "
 								. $where . 
-								" ORDER BY id_tinraovat DESC Limit {$offset},{$rowCount}";
+								" ORDER BY id DESC LIMIT {$offset}, {$rowCount}";
 								break;
 							case 2:
-								$queryNews = "SELECT tinraovat.*,users.username 
-								FROM tinraovat
-								INNER JOIN users ON tinraovat.id_user=users.id_user "
+								$queryNews = "SELECT recruitment.*,users.username 
+								FROM recruitment
+								INNER JOIN users ON recruitment.user_id = users.id "
 								. $where. 
-								" ORDER BY gia ASC Limit {$offset},{$rowCount}";
+								" ORDER BY salary ASC LIMIT {$offset}, {$rowCount}";
 								break;
 							case 3:
-								$queryNews = "SELECT tinraovat.*,users.username 
-								FROM tinraovat
-								INNER JOIN users ON tinraovat.id_user=users.id_user "
+								$queryNews = "SELECT recruitment.*, users.username 
+								FROM recruitment
+								INNER JOIN users ON recruitment.user_id = users.id "
 								. $where .
-								" ORDER BY gia DESC Limit {$offset},{$rowCount}";
+								" ORDER BY salary DESC Limit {$offset}, {$rowCount}";
 								break;
 						}
 
 						$resultNews = $DB->select($queryNews);
 
 						foreach ($resultNews as $news) {
-							$url="/detail/" . convertUtf8ToLatin($news['tentinraovat']) . '-' . $news['id_tinraovat'] . ".html";
+							$url="/detail/" . convertUtf8ToLatin($news['title']) . '-' . $news['id'] . ".html";
 					?>
 						<li>
 							<a href="<?php echo $url ?>" title="">
-								<h2><?php echo $news['tentinraovat'] ?></h2>
-								<span class="place"><?php echo $news['noiban'] ?></span><br/>
+								<h2><?php echo $news['title'] ?></h2>
+								<span class="place"><?php echo $news['location'] ?></span><br/>
 								<img src="/files/<?php echo $news['picture'] ?>" title="Tuyển dụng" alt=""/>
 								<br/>
-								<span class="price"><?php echo $news['gia'] ?><sup>đ</sup></span>
+								<span class="price"><?php echo $news['salary'] ?><sup>đ</sup></span>
 							</a>
 							<br/>
 							<h4>
 								Đăng bởi 
-								<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['id_user'] ?>">
+								<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['user_id'] ?>">
 									<?php echo $news['username'] ?>
 								</a>
 							</h4>

@@ -1,4 +1,4 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT']."/templates/public/inc/header.php" ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT']."/templates/public/inc/header.php"; ?>
 <?php 
 	if (!empty($_GET['id'])) {
 		$id = $_GET['id'];
@@ -10,20 +10,20 @@
 	<!--content-->
 	<div class="content">
 		<?php 
-			$querySQL = "SELECT tinraovat.*, username, diachi, email, tendanhmuc,id_danhmuc 
-				FROM tinraovat 
-				INNER JOIN users ON tinraovat.id_user=users.id_user 
-				INNER JOIN danhmucsanpham ON tinraovat.id_danhmucsanpham=danhmucsanpham.id_danhmuc
-				WHERE id_tinraovat={$id}";
+			$querySQL = "SELECT recruitment.*, username, address, email, name
+				FROM recruitment 
+				INNER JOIN users ON recruitment.user_id = users.id 
+				INNER JOIN category ON recruitment.category_id = category.id
+				WHERE recruitment.id = {$id}";
 
 			$result = $DB->select($querySQL)[0];
-			$result['ngaydang'] = date('d-m-Y',strtotime($result['ngaydang']));
-			$urlCate = "/category/".convertUtf8ToLatin($result['tendanhmuc']) . '-' . $result['id_danhmuc'];
+			$result['created_at'] = date('d-m-Y',strtotime($result['created_at']));
+			$urlCate = "/category/".convertUtf8ToLatin($result['name']) . '-' . $result['id'];
 		?>
 		<div class="category-title">
 			<a href="/">Trang chủ</a>
 			<div class="fa fa-caret-right"></div>
-			<a href="<?php echo $urlCate?>"><?php echo $result['tendanhmuc']?></a>
+			<a href="<?php echo $urlCate?>"><?php echo $result['name']?></a>
 		</div>
 		<div class="main-content">
 
@@ -31,16 +31,16 @@
 				<div class="header-list-a">
 					<div class="icon-a fa fa-flag"></div>
 					<a href="">
-						<?php echo $result['tentinraovat']?>
+						<?php echo $result['title']?>
 					</a>
 				</div>
 				<div class="info-new">
 					<ul>
-						<li>Ngày đăng: <?php echo $result['ngaydang']?></li>
+						<li>Ngày đăng: <?php echo $result['created_at']?></li>
 						/
 						<li>Mã tin: <?php echo $id?></li>
 						/
-						<li>Đăng bởi: <a href="timeline.php?idUser=<?php echo $result['id_user']?>" class="user" alt=""><?php echo $result['username']?></a></li>
+						<li>Đăng bởi: <a href="timeline.php?idUser=<?php echo $result['id']?>" class="user" alt=""><?php echo $result['username']?></a></li>
 					</ul>
 				</div>
 			</div>
@@ -52,9 +52,9 @@
 					<div class="contact-info">
 						<h2><span class="fa fa-thumb-tack"></span> THÔNG TIN LIÊN HỆ</h2>
 						<ul>
-							<li><span class="fa fa-caret-right"></span>Trang cá nhân: <a href="timeline.php?idUser=<?php echo $result['id_user']?>" class="user" alt=""><?php echo $result['username']?></a></li>
-							<li><span class="fa fa-caret-right"></span>Địa chỉ: <span><?php echo $result['diachi']?></span></li>
-							<li><span class="fa fa-caret-right"></span>Số điện thoại: <span><?php echo $result['sodienthoai']?></span></li>
+							<li><span class="fa fa-caret-right"></span>Trang cá nhân: <a href="timeline.php?idUser=<?php echo $result['user_id']?>" class="user" alt=""><?php echo $result['username']?></a></li>
+							<li><span class="fa fa-caret-right"></span>Địa chỉ: <span><?php echo $result['address']?></span></li>
+							<li><span class="fa fa-caret-right"></span>Số điện thoại: <span><?php echo $result['phone']?></span></li>
 							<li><span class="fa fa-caret-right"></span>Email: <span><?php echo $result['email']?></span></li>
 							<li><span class="fa fa-caret-right"></span>Facebook: <a href="http://fb.com/tieucuong231" target="_blank">tieucuong231</a></li>
 						</ul>
@@ -66,10 +66,10 @@
 					</div>
 				</div>
 				<div class="right-info">
-					<h1><?php echo $result['gia']?><sup>đ</sup></h1>
-					<h3><?php echo $result['noiban']?></h3>
+					<h1><?php echo $result['salary']?><sup>đ</sup></h1>
+					<h3><?php echo $result['location']?></h3>
 					<p>
-						<?php echo $result['mota']?>
+						<?php echo $result['description']?>
 					</p>
 				</div>
 			</div>
@@ -95,21 +95,21 @@
 		            <ul class="ul-list-cmt">
 		                <?php
 		                    $queryCmt = "SELECT * FROM comment 
-			                    WHERE id_tinraovat={$id} 
-			                    ORDER BY ngaycmt DESC ";
+			                    WHERE id = {$id} 
+			                    ORDER BY created_at DESC ";
 
 		                    $resultCmt = $DB->select($queryCmt);
 
 		                    foreach ($resultCmt as $comment) {
-		                        $dayCreateCmt=date("d/m/Y", strtotime($comment['ngaycmt']));
-		                        $hourCreateCmt=date("H:i:s", strtotime($comment['ngaycmt']));
+		                        $dayCreateCmt=date("d/m/Y", strtotime($comment['created_at']));
+		                        $hourCreateCmt=date("H:i:s", strtotime($comment['created_at']));
 		                ?>
 			                <li class="li-list-cmt">
 			                    <h4><?php echo $comment['tennguoicmt'] ?></h4>
 			                    <div  class="detail-cmt">
 			                        <span><?php echo $hourCreateCmt?></span> | <span><?php echo $dayCreateCmt?></span> | <span><?php echo $comment['email'] ?></span>
 			                    </div>
-			                    <p><?php echo $comment['noidung'] ?></p>
+			                    <p><?php echo $comment['content'] ?></p>
 			                </li>
 		                <?php } ?>
 		            </ul>
@@ -125,29 +125,29 @@
 			<div class="list-all-new">
 				<ul>
 					<?php 
-						$querySQL = "SELECT tinraovat.*, username 
-							FROM tinraovat 
-							INNER JOIN users ON tinraovat.id_user=users.id_user 
-							WHERE id_tinraovat != {$id} 
-							AND id_danhmucsanpham = {$result['id_danhmuc']} LIMIT 5, 5";
+						$querySQL = "SELECT recruitment.*, username 
+							FROM recruitment 
+							INNER JOIN users ON recruitment.user_id = users.id 
+							WHERE recruitment.id != {$id} 
+							AND category_id = {$result['category_id']} LIMIT 5, 5";
 
 						$resultNews = $DB->select($querySQL);
 
 						foreach ($resultNews as $resultNew) {
-							$url = "/detail/" . convertUtf8ToLatin($resultNew['tentinraovat']) . '-' . $resultNew['id_tinraovat'] . ".html";
+							$url = "/detail/" . convertUtf8ToLatin($resultNew['title']) . '-' . $resultNew['id'] . ".html";
 					?>
 						<li>
 							<a href="<?php echo $url ?>" title="">
-								<h2><?php echo $resultNew['tentinraovat']?></h2>
+								<h2><?php echo $resultNew['title']?></h2>
 								<span class="place"><?php echo $resultNew['noiban'] ?></span><br/>
 								<img src="<?php echo '/files/' . $resultNew['picture'] ?>" title="Tuyển dụng" alt=""/>
 								<br/>
-								<span class="price"><?php echo $resultNew['gia'] ?><sup>đ</sup></span>
+								<span class="price"><?php echo $resultNew['salary'] ?><sup>đ</sup></span>
 							</a>
 							<br/>
 							<h4>
 								Đăng bởi 
-								<a href="timeline.php?idUser=<?php echo $resultNew['id_user']?>" class="user" alt="">
+								<a href="timeline.php?idUser=<?php echo $resultNew['user_id']?>" class="user" alt="">
 									<?php echo $resultNew['username'] ?>
 								</a>
 							</h4>
@@ -158,29 +158,29 @@
 			<div class="list-all-new">
 				<ul>
 					<?php 
-						$querySQL = "SELECT tinraovat.*, username 
-							FROM tinraovat 
-							INNER JOIN users ON tinraovat.id_user=users.id_user 
-							WHERE id_tinraovat != {$id} 
-							AND id_danhmucsanpham = {$result['id_danhmuc']} LIMIT 0, 5";
+						$querySQL = "SELECT recruitment.*, username 
+							FROM recruitment 
+							INNER JOIN users ON recruitment.user_id = users.id
+							WHERE recruitment.id != {$id} 
+							AND category_id = {$result['category_id']} LIMIT 0, 5";
 
 						$resultNews = $DB->select($querySQL);
 
 						foreach ($resultNews as $resultNew) {
-							$url = "/detail/" . convertUtf8ToLatin($resultNew['tentinraovat']) . '-' . $resultNew['id_tinraovat'] . ".html";	
+							$url = "/detail/" . convertUtf8ToLatin($resultNew['title']) . '-' . $resultNew['id'] . ".html";	
 					?>
 						<li>
 							<a href="<?php echo $url?>" title="">
-								<h2><?php echo $resultNew['tentinraovat'] ?></h2>
-								<span class="place"><?php echo $resultNew['noiban'] ?></span><br/>
+								<h2><?php echo $resultNew['title'] ?></h2>
+								<span class="place"><?php echo $resultNew['location'] ?></span><br/>
 								<img src="<?php echo '/files/' . $resultNew['picture'] ?>" title="Tuyển dụng" alt=""/>
 								<br/>
-								<span class="price"><?php echo $resultNew['gia'] ?><sup>đ</sup></span>
+								<span class="price"><?php echo $resultNew['salary'] ?><sup>đ</sup></span>
 							</a>
 							<br/>
 							<h4>
 								Đăng bởi 
-								<a href="timeline.php?idUser=<?php echo $resultNew['id_user'] ?>" class="user" alt="">
+								<a href="timeline.php?idUser=<?php echo $resultNew['user_id'] ?>" class="user" alt="">
 									<?php echo $resultNew['username'] ?>
 								</a>
 							</h4>

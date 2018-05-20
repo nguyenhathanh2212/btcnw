@@ -1,4 +1,4 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT']."/templates/public/inc/header.php" ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT']."/templates/public/inc/header.php"; ?>
 <!--content-->
 	<div class="content">
 		<div class="category-title">
