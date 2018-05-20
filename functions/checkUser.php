@@ -1,5 +1,7 @@
 <?php
-	if(!isset($_SESSION['UserAuthenticate'])&&($_SESSION['UserAuthenticate']['active']==1||$_SESSION['UserAuthenticate']['username']=='admin')){
+    require_once $_SERVER['DOCUMENT_ROOT'].'/functions/session.php';
+
+	if(!$session->has('UserAuthenticate')){
 		header("location:/login.php");
 	}
 ?>

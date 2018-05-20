@@ -1,4 +1,4 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . "/templates/public/inc/header.php" ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . "/templates/public/inc/header.php"; ?>
 	<?php if ($session->has('msgSuccess')) { ?>
 		<div class="alert-message success">
 			<?php echo $session->get('msgSuccess'); ?>

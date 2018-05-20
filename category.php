@@ -2,7 +2,7 @@
 <!--content-->
 <?php
 	if(!empty($_GET['idCate'])){
-		$idCate=$_GET['idCate'];
+		$idCate = $_GET['idCate'];
 	}else {
 		header("location:/404");
 		die();
@@ -57,9 +57,9 @@
 				</div>	
 				<div class="select-sort-new">
 					<ul>
-						<li><a href="/category.php?idCate=<?php echo $idCate ?>&filter=1" <?php if($filter == 1){echo "class='sort-active'";} ?> >Tin mới</a></li>
-						<li><a href="/category.php?idCate=<?php echo $idCate?>&filter=2"  <?php if($filter == 2){echo "class='sort-active'";}?> >Giá Thấp</a></li>
-						<li><a href="/category.php?idCate=<?php echo $idCate?>&filter=3"  <?php if($filter == 3){echo "class='sort-active'";}?>>Giá Cao</a></li>
+						<li><a href="/category.php?idCate=<?php echo $idCate ?>&filter=1" <?php if($filter == 1){echo "class='sort-active'";}?>>Tin mới</a></li>
+						<li><a href="/category.php?idCate=<?php echo $idCate?>&filter=2"  <?php if($filter == 2){echo "class='sort-active'";}?>>Lương Thấp</a></li>
+						<li><a href="/category.php?idCate=<?php echo $idCate?>&filter=3"  <?php if($filter == 3){echo "class='sort-active'";}?>>Lương Cao</a></li>
 					</ul>
 				</div>
 			</div>
