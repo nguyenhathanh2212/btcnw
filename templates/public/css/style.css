@@ -54,10 +54,6 @@ a:hover {
 	width: 430px;
 }
 
-.right-center-header {
-	padding: 20px 0;
-}
-
 .right-center-header .search {
 	display: inline;
 }
@@ -268,7 +264,8 @@ a:hover {
 }
 
 .top-content {
-	margin: 10px 0 80px 0;
+	margin: 10px 0 50px 0;
+    height: 400px;
 }
 .top-content .left-top-content {
 	height: 360px;
@@ -278,12 +275,10 @@ a:hover {
     margin: auto;
 }
 .top-content .right-top-content {
-	height: 360px;
-background: #fff;
-padding-top: 10px;
+	height: 370px;
+    background: #fff;
+    padding-top: 20px;
 }
-
-
 
 .all-new {
 	border: 1px solid #ebebeb;
@@ -1560,6 +1555,7 @@ input.infor {
 	position: relative;
 	min-height: 1px;
 	float: left;
+	padding: 34px 0;
 }
 
 .upnew-button {
@@ -1567,6 +1563,8 @@ input.infor {
 	position: relative;
 	min-height: 1px;
 	float: left;
+	padding-left: 15px;
+    padding-right: 15px;
 }
 
 .danhmuc-search {
@@ -1576,5 +1574,32 @@ input.infor {
 }
 
 .timkiem {
-	
+	position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
+}
+
+.left-top-header, .right-top-header {
+	width: 41.66666667%;
+	position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
+}
+
+.right-top-header {
+    float: right;
+    text-align: right;
+}
+
+.left-footer, .center-footer, .right-footer {
+	width: 33.33333333%;
+	position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
 }

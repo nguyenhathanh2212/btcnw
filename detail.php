@@ -44,7 +44,7 @@
 						/
 						<li>Mã tin: <?php echo $id?></li>
 						/
-						<li>Đăng bởi: <a href="timeline.php?idUser=<?php echo $result['id']?>" class="user" alt=""><?php echo $result['username']?></a></li>
+						<li>Đăng bởi: <a href="<?php echo '/timeline/'.convertUtf8ToLatin($result['username']).'-'.$result['user_id'] ?>" class="user" alt=""><?php echo $result['username']?></a></li>
 					</ul>
 				</div>
 			</div>
@@ -56,7 +56,12 @@
 					<div class="contact-info">
 						<h2><span class="fa fa-thumb-tack"></span> THÔNG TIN LIÊN HỆ</h2>
 						<ul>
-							<li><span class="fa fa-caret-right"></span>Trang cá nhân: <a href="timeline.php?idUser=<?php echo $result['user_id']?>" class="user" alt=""><?php echo $result['username']?></a></li>
+							<li>
+								<span class="fa fa-caret-right"></span>Trang cá nhân: 
+								<a href="<?php echo '/timeline/'.convertUtf8ToLatin($result['username']).'-'.$result['user_id'] ?>" class="user" alt="">
+									<?php echo $result['username']?>
+								</a>
+							</li>
 							<li><span class="fa fa-caret-right"></span>Địa chỉ: <span><?php echo $result['address']?></span></li>
 							<li><span class="fa fa-caret-right"></span>Số điện thoại: <span><?php echo $result['phone']?></span></li>
 							<li><span class="fa fa-caret-right"></span>Email: <span><?php echo $result['email']?></span></li>
@@ -70,7 +75,7 @@
 					</div>
 				</div>
 				<div class="right-info">
-					<h1>Salary :<?php echo $result['salary']?><sup>đ</sup></h1>
+					<h1>Lương: <?php echo $result['salary']?><sup>đ</sup></h1>
 					<h3><?php echo $result['location']?></h3>
 					<p>
 						<?php echo $result['description']?>
@@ -151,9 +156,10 @@
 							<br/>
 							<h4>
 								Đăng bởi 
-								<a href="timeline.php?idUser=<?php echo $resultNew['user_id']?>" class="user" alt="">
+								<a href="<?php echo '/timeline/'.convertUtf8ToLatin($resultNew['username']).'-'.$resultNew['user_id'] ?>" class="user" alt="">
 									<?php echo $resultNew['username'] ?>
 								</a>
+
 							</h4>
 						</li>
 					<?php }?>
@@ -184,7 +190,7 @@
 							<br/>
 							<h4>
 								Đăng bởi 
-								<a href="timeline.php?idUser=<?php echo $resultNew['user_id'] ?>" class="user" alt="">
+								<a href="<?php echo '/timeline/'.convertUtf8ToLatin($resultNew['username']).'-'.$resultNew['user_id'] ?>" class="user" alt="">
 									<?php echo $resultNew['username'] ?>
 								</a>
 							</h4>
