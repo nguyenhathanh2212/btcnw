@@ -1,7 +1,9 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT'].'/functions/dbconnect.php';
-    require_once $_SERVER['DOCUMENT_ROOT'].'/functions/defines.php';
+<?php 
     ob_start();
     session_start(); 
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/functions/database.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/functions/session.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/functions/defines.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +23,7 @@
 <body>
   <div class="row">
     <div class="left col-sm-2">
-      <h4 class="username"><?php echo $_SESSION['arUser']['username'];?></h4>
+      <h4 class="username"><?php echo $_SESSION['UserAuthenticate']['username'];?></h4>
       <ul class="ul-list-manage">
         <li class="li-list-manage" ><a href="/admin/category/?id=1"><i class="icon-cat fa fa-list-ul" aria-hidden="true"></i>Danh mục<span class="visited"></span></a></li>
         <li class="li-list-manage"><a href="/admin/news/?id=2"><i class="icon-cat fa fa-map" aria-hidden="true"></i>Bài viết<span class="visited"></span></a></li>
@@ -32,8 +34,8 @@
     <div class="right col-sm-10">
       <div class="header row">
         <?php
-          $trang='INFORMATION';
-          if(!empty($_GET['id'])){
+          $trang='QUẢN LÝ';
+          if (!empty($_GET['id'])) {
             $id=$_GET['id'];
             switch ($id) {
               case 1:
@@ -58,7 +60,7 @@
         <h4 class="col-sm-3 title-manage"><a href="#"><?php echo $trang; ?></a></h4>
         <div class="user-log col-sm-3 col-sm-offset-6">
           <ul class="ul-user-log">
-            <li class="li-user-log"><a href="">Thông báo</a></li>
+            <!-- <li class="li-user-log"><a href="">Thông báo</a></li> -->
             <li class="li-user-log"><a href="/logout.php">Log out</a></li>
           </ul>
         </div>

@@ -10,5 +10,5 @@
 </html>
 <?php
     ob_end_flush();
-    $mySQLI->close();
+    $DB->close();
 ?>

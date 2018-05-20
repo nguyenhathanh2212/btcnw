@@ -1,6 +1,6 @@
 <?php
-	require_once $_SERVER['DOCUMENT_ROOT'].'/functions/database.php';
-    require_once $_SERVER['DOCUMENT_ROOT'].'/functions/session.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/functions/database.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/functions/session.php';
 
     // login
 	if (isset($_POST['login'])) {
@@ -52,9 +52,6 @@
 			exit();
 		}
 
-		$query = "INSERT INTO users(username,password,email,avatar,active)
-			VALUES ('{$username}','{$password}','{$email}','{$avatar}',0)";	
-
 		$result = $DB->create('users', [
 			'username' => $username,
 			'password' => $password,
@@ -95,7 +92,7 @@
 		} else {
 			$arPic = explode(".", $avatar);
 			$endPic = end($arPic);
-			$nameavatar = 'TDK-' . time() . '.' . $endPic;
+			$nameavatar = 'TDVL-' . time() . '.' . $endPic;
 			$path_upload = $_SERVER['DOCUMENT_ROOT'] . '/files/' . $nameavatar;
 			$tmp_name = $_FILES['avatar']['tmp_name'];
 			move_uploaded_file($tmp_name,$path_upload);
@@ -103,11 +100,11 @@
 
 		if (md5($cfPassword) != $user['password']) {
 			$session->set('editPasswordConfirm', 'Mật khẩu cũ không đúng!');
-			header("location:/edit-user/edit-" . $user['id_user']);
+			header("location:/edit-user/edit-" . $user['id']);
 			exit();
 		} else {
 			$data = [];
-			$where = "id_user = " . $user['id_user'];
+			$where = "id = " . $user['id'];
 
 			if ($password == "") {
 				$data = [
@@ -129,7 +126,7 @@
 			}
 		}
 
-		header("location:/timeline/edited-" . $user['id_user']);
+		header("location:/timeline/edited-" . $user['id']);
 		exit();
 	}
 

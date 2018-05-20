@@ -161,7 +161,7 @@
 				<div class="list-sub-new wow fadeInUp">
 					<div class="header-list">
 						<div class="icon-index fa fa-paw"></div>
-						<a href="/category/thu-nuoi-1" title=""> BÁC SĨ</a>
+						<a href="/category/bac-si-1" title=""> BÁC SĨ</a>
 					</div>
 					<ul>
 						<?php
@@ -196,13 +196,13 @@
 						<?php } ?>
 					</ul>
 					<div class="see-more">
-						<a href="/category/thu-nuoi-1">Xem thêm >></a>
+						<a href="/category/bac-si-1">Xem thêm >></a>
 					</div>
 				</div>
 				<div class="list-sub-new wow fadeInUp" data-wow-delay="0.5s">
 					<div class="header-list">
 						<div class="icon-index fa fa-car"></div>
-						<a href="/category/xe-co-2" title="">BÁN HÀNG</a>
+						<a href="/category/ban-hang-2" title="">BÁN HÀNG</a>
 					</div>
 					<ul>
 						<?php
@@ -237,13 +237,13 @@
 						<?php } ?>
 					</ul>
 					<div class="see-more">
-						<a href="/category/xe-co-2">Xem thêm >></a>
+						<a href="/category/ban-hang-2">Xem thêm >></a>
 					</div>
 				</div>
 				<div class="list-sub-new wow fadeInUp">
 					<div class="header-list">
 						<div class="icon-index fa fa-laptop"></div>
-						<a href="/category/dien-tu-3" title="">BẢO HIỂM</a>
+						<a href="/category/bao-hiem-3" title="">BẢO HIỂM</a>
 					</div>
 					<ul>
 						<?php
@@ -278,7 +278,7 @@
 						<?php } ?>
 					</ul>
 					<div class="see-more">
-						<a href="/category/dien-tu-3">Xem thêm >></a>
+						<a href="/category/bao-hiem-3">Xem thêm >></a>
 					</div>
 				</div>
 				<div class="list-sub-new wow fadeInUp" data-wow-delay="0.5s">
@@ -325,7 +325,7 @@
 				<div class="list-sub-new wow fadeInUp">
 					<div class="header-list">
 						<div class="icon-index fa fa-female"></div>
-						<a href="/category/the-thao-5" title="">PHIÊN DỊCH</a>
+						<a href="/category/phien-dich-5" title="">PHIÊN DỊCH</a>
 					</div>
 					<ul>
 						<?php
@@ -360,13 +360,13 @@
 						<?php } ?>
 					</ul>
 					<div class="see-more">
-						<a href="/category/the-thao-5">Xem thêm >></a>
+						<a href="/category/phien-dich-5">Xem thêm >></a>
 					</div>
 				</div>
 				<div class="list-sub-new wow fadeInUp" data-wow-delay="0.5s">
 					<div class="header-list">
 						<div class="icon-index fa fa-bicycle"></div>
-						<a href="/category/thoi-trang-6" title="">CƠ KHÍ</a>
+						<a href="/category/co-khi-6" title="">CƠ KHÍ</a>
 					</div>
 					<ul>
 						<?php
@@ -401,13 +401,13 @@
 						<?php } ?>
 					</ul>
 					<div class="see-more">
-						<a href="/category/thoi-trang-6">Xem thêm >></a>
+						<a href="/category/co-khi-6">Xem thêm >></a>
 					</div>
 				</div>
 				<div class="list-sub-new wow fadeInUp">
 					<div class="header-list">
 						<div class="icon-index fa fa-user"></div>
-						<a href="/category/tuyen-dung-7" title="">DỆT MAY - GIÀY DA</a>
+						<a href="/category/det-may-giay-da-7" title="">DỆT MAY - GIÀY DA</a>
 					</div>
 					<ul>
 						<?php
@@ -442,13 +442,13 @@
 						<?php } ?>
 					</ul>
 					<div class="see-more">
-						<a href="/category/tuyen-dung-7">Xem thêm >></a>
+						<a href="/category/det-may-giay-da-7">Xem thêm >></a>
 					</div>
 				</div>
 				<div class="list-sub-new wow fadeInUp" data-wow-delay="0.5s">
 					<div class="header-list">
 						<div class="icon-index fa fa-cutlery"></div>
-						<a href="/category/thuc-pham-8" title="">DƯỢC SĨ</a>
+						<a href="/category/duoc-si-8" title="">DƯỢC SĨ</a>
 					</div>
 					<ul>
 						<?php
@@ -483,13 +483,13 @@
 						<?php } ?>
 					</ul>
 					<div class="see-more">
-						<a href="/category/thuc-pham-8">Xem thêm >></a>
+						<a href="/category/duoc-si-8">Xem thêm >></a>
 					</div>
 				</div>
 				<div class="list-sub-new wow fadeInUp">
 					<div class="header-list">
 						<div class="icon-index fa fa-shower"></div>
-						<a href="/category/noi-ngoai-that-9" title="">CÔNG NGHỆ THÔNG TIN</a>
+						<a href="/category/cong-nghe-thong-tin-9" title="">CÔNG NGHỆ THÔNG TIN</a>
 					</div>
 					<ul>
 						<?php
@@ -524,7 +524,7 @@
 						<?php } ?>
 					</ul>
 					<div class="see-more">
-						<a href="/category/noi-ngoai-that-9">Xem thêm >></a>
+						<a href="/category/cong-nghe-thong-tin-9">Xem thêm >></a>
 					</div>
 				</div>
 				<div class="list-sub-new wow fadeInUp" data-wow-delay="0.5s">
