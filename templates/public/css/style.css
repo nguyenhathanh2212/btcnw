@@ -1363,6 +1363,7 @@ margin-right: 20px;
 	padding-top: 30px;
 	background-color: #fff;
 	margin-bottom: 30px;
+	padding-left: 30px;
 }
 
 .li-slider {
@@ -1602,4 +1603,21 @@ input.infor {
     padding-left: 15px;
     padding-right: 15px;
     float: left;
+}
+
+.content-login .left-content, .content-login .right-content {
+	width: 50%;
+	position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
+}
+
+.content-login label, .postnews-content label {
+	display: inline-block;
+}
+
+.postnews-content textarea {
+	display: inline-block;
 }

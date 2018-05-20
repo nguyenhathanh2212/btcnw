@@ -31,7 +31,7 @@
 			<div class="clr"></div>
 			<label class="left-login">Information:</label>
 			<div class="right-login">
-				<textarea  name = 'info' cols="40" rows="5"><?php echo $user['info'] ?></textarea>
+				<textarea  name = 'info' cols="44" rows="5"><?php echo $user['info'] ?></textarea>
 				<br/ ><label for="email" class="error"></label>
 			</div>
 			<div class="clr"></div>
