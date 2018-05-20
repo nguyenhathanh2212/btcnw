@@ -166,5 +166,13 @@ $(document).ready(function() {
 				required:"Vui lòng nhập tên danh mục",
 			},
 		}
-	}); 
+	});
+
+	$('.alert-message').delay(3000).hide('300');
+	
+	$('#logout-btn').click(function () {
+		$('#logout-form').submit();
+
+		return false;
+	});
 });

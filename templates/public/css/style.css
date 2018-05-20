@@ -1529,3 +1529,52 @@ input.infor {
 	text-align: center;
 	font-size: 20px;
 }
+
+.row {
+	overflow: hidden;
+}
+
+.left-top-content {
+	width: 58.33333333%;
+	position: relative;
+	min-height: 1px;
+	float: left;
+}
+
+.right-top-content {
+	width: 41.66666667%;
+	position: relative;
+	min-height: 1px;
+	float: left;
+}
+
+.left-center-header {
+	width: 33.33333333%;
+	position: relative;
+	min-height: 1px;
+	float: left;
+}
+
+.right-center-header {
+	width: 41.66666667%;
+	position: relative;
+	min-height: 1px;
+	float: left;
+}
+
+.upnew-button {
+	width: 25%;
+	position: relative;
+	min-height: 1px;
+	float: left;
+}
+
+.danhmuc-search {
+	width: 25%;
+	position: relative;
+	min-height: 1px;
+}
+
+.timkiem {
+	
+}

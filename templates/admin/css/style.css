@@ -44,8 +44,6 @@ h4.username {
 	min-height: 500px !important;
 	background: #FFFFFF;
 	border: 10px solid #F4F3EF;
-	padding-left: 10px;
-	padding-top: 10px;
 	border-radius: 30px;
 }
 .content .add {
@@ -109,33 +107,43 @@ ul.ul-list-manage {
 
 }
 .tb-admin tr th {
-	
-line-height: 50px;
-text-align: center;
-font-size: 16px;
-	
-color: #22a290;
-	
-border-bottom: 1px solid #257d69;
-}
-.tb-admin tr td {
+	line-height: 50px;
 	text-align: center;
-line-height: 50px;
-	
-font-size: 15px;
-	
-color: #22bf1f;
-	
-border-bottom: 1px solid #06ee63;
-}
-.tb-admin tr td > a {
-	
-font-size: 15px;
-	
-color: #061206;
+	font-size: 16px;
+	color: #22a290;
+	border: 1px solid #7f7f7c;
+	background: #cecece;
 }
 
-.content {margin: 10px 0px 50px;padding:0 50px 0 10px;}
+.tb-admin tbody {
+	border: 1px solid #7f7f7c;
+}
+
+.tb-admin tr td {
+	text-align: center;
+	line-height: 50px;
+	font-size: 15px;
+	color: #22bf1f;
+	border: 1px solid #7f7f7c;
+}
+
+.tb-admin tr:nth-child(odd) td {
+	background: #f3f1f1;
+}
+
+.tb-admin tr td > a {
+	font-size: 15px;
+	color: #061206;
+}
+
+.tb-admin tr:last-child th {
+	border-bottom: none !important;
+}
+
+.content {
+	margin: 10px 0px 50px;
+	padding: 30px 30px;
+}
 
 .content .left-content {
 	background: #EBEBEB;
@@ -224,4 +232,76 @@ label.error {
 	font-weight: bold;
 	border-top: 3px solid #0066ff !important;
 	border-bottom: 3px solid #0066ff !important; 
+}
+
+.left-side-bar {
+	width: 16.66666667%;
+	position: relative;
+	min-height: 1px;
+	float: left;
+}
+
+.right-main-content {
+	width: 83.33333333%;
+	position: relative;
+	min-height: 1px;
+	float: left;
+}
+
+.row {
+	overflow: hidden;
+}
+
+.title-manage {
+	width: 25%;
+	position: relative;
+	min-height: 1px;
+	float: left;
+}
+
+.user-log {
+	width: 17%;
+	position: relative;
+	min-height: 1px;
+	float: right;
+}
+
+.source {
+	width: 22%;
+	position: relative;
+	min-height: 1px;
+	float: right;
+}
+
+.li-list-manage a {
+	text-decoration: none;
+}
+
+.li-list-manage a:hover {
+	text-decoration: underline;
+}
+
+.title-manage a {
+	text-decoration: none;
+}
+
+.alert-message {
+    padding: 10px 30px;
+    border-radius: 8px;
+    right: 0;
+    z-index: 10000;
+    text-align: center;
+    margin: 20px 20px 10px 20px;
+}
+
+.alert-message.error {
+    color: #e20606;
+    background-color: #f3a0a0;
+    border: 2px solid #f53f3f;
+}
+
+.alert-message.success {
+    color: #43a904;
+    background-color: #afef8e;
+    border: 2px solid #46cc2e;
 }
