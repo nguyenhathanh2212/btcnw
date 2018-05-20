@@ -92,15 +92,15 @@
     <div class="tail-header">
         <ul>
             <li><a href="/" class="fa fa-home"></a></li>
-            <li><a href="/category/vat-nuoi-1" class="fa fa-paw"></span> Bác sĩ</a></li>
-            <li><a href="/category/xe-co-2" class="fa fa-car"> Bán hàng</a></li>
-            <li><a href="/category/dien-tu-3" class="fa fa-laptop"> Bảo hiểm</a></li>
+            <li><a href="/category/vat-nuoi-1" class="fa fa-user-md"></span> Bác sĩ</a></li>
+            <li><a href="/category/xe-co-2" class="fa shopping-cart"> Bán hàng</a></li>
+            <li><a href="/category/dien-tu-3" class="fa address-card-o"> Bảo hiểm</a></li>
             <li><a href="/category/bat-dong-san-4" class="fa fa-home"> Bất động sản</a></li>
-            <li><a href="/category/the-thao-5" class="fa fa-bicycle"> Phiên dịch</a></li>
-            <li><a href="/category/thoi-trang-6" class="fa fa-female"> Cơ khí</a></li>
-            <li><a href="/category/tuyen-dung-7" class="fa fa-user"> Dệt may, giày da</a></li>
-            <li><a href="/category/thuc-pham-8" class="fa fa-cutlery"> Dược sĩ</a></li>
-            <li><a href="/category/noi-ngoai-that-9" class="fa fa-shower"> Công nghệ thông tin</a></li>
+            <li><a href="/category/the-thao-5" class="fa fa-users"> Phiên dịch</a></li>
+            <li><a href="/category/thoi-trang-6" class="fa fa-ship"> Cơ khí</a></li>
+            <li><a href="/category/tuyen-dung-7" class="fa fa-shirtsinbulk"> Dệt may, giày da</a></li>
+            <li><a href="/category/thuc-pham-8" class="fa fa-user-circle"> Dược sĩ</a></li>
+            <li><a href="/category/noi-ngoai-that-9" class="fa fa-laptop"> Công nghệ thông tin</a></li>
             <li><a href="/category/khac-10" class="fa fa-gift"> Khác</a></li>
         </ul>
     </div>

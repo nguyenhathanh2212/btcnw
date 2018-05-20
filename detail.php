@@ -17,6 +17,10 @@
 				WHERE recruitment.id = {$id}";
 
 			$result = $DB->select($querySQL)[0];
+
+			if (!count($result)) {
+				header("location: /404");
+			}
 			$result['created_at'] = date('d-m-Y',strtotime($result['created_at']));
 			$urlCate = "/category/".convertUtf8ToLatin($result['name']) . '-' . $result['id'];
 		?>
@@ -66,7 +70,7 @@
 					</div>
 				</div>
 				<div class="right-info">
-					<h1><?php echo $result['salary']?><sup>đ</sup></h1>
+					<h1>Salary :<?php echo $result['salary']?><sup>đ</sup></h1>
 					<h3><?php echo $result['location']?></h3>
 					<p>
 						<?php echo $result['description']?>
@@ -129,7 +133,7 @@
 							FROM recruitment 
 							INNER JOIN users ON recruitment.user_id = users.id 
 							WHERE recruitment.id != {$id} 
-							AND category_id = {$result['category_id']} LIMIT 5, 5";
+							AND category_id = {$result['category_id']} LIMIT 0, 5";
 
 						$resultNews = $DB->select($querySQL);
 
@@ -139,7 +143,7 @@
 						<li>
 							<a href="<?php echo $url ?>" title="">
 								<h2><?php echo $resultNew['title']?></h2>
-								<span class="place"><?php echo $resultNew['noiban'] ?></span><br/>
+								<span class="place"><?php echo $resultNew['location'] ?></span><br/>
 								<img src="<?php echo '/files/' . $resultNew['picture'] ?>" title="Tuyển dụng" alt=""/>
 								<br/>
 								<span class="price"><?php echo $resultNew['salary'] ?><sup>đ</sup></span>
@@ -162,7 +166,7 @@
 							FROM recruitment 
 							INNER JOIN users ON recruitment.user_id = users.id
 							WHERE recruitment.id != {$id} 
-							AND category_id = {$result['category_id']} LIMIT 0, 5";
+							AND category_id = {$result['category_id']} LIMIT 5, 5";
 
 						$resultNews = $DB->select($querySQL);
 

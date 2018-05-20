@@ -1,14 +1,14 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT']."/templates/public/inc/header.php" ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT']."/templates/public/inc/header.php"; ?>
 <!--content-->
 <?php
 	if (!empty($_GET['str'])){
 		$str = $_GET['str'];
 		$idCate = $_GET['idCat'];
 
-		if ($idCate==0){
-			$where = " tentinraovat LIKE '%{$str}%' ";
+		if ($idCate == 0){
+			$where = " title LIKE '%{$str}%' ";
 		} else {
-			$where = " tentinraovat LIKE '%{$str}%' AND id_danhmucsanpham = {$idCate}";
+			$where = " title LIKE '%{$str}%' AND category_id = {$idCate}";
 		}
 	} else {
 		header("location:/");
@@ -21,11 +21,11 @@
 			<span class="fa fa-caret-right"></span>
 			<?php if ($idCate != 0) { ?>
 				<?php
-	                $queryCate = "SELECT * FROM danhmucsanpham WHERE id_danhmuc={$idCate}";
+	                $queryCate = "SELECT * FROM category WHERE id={$idCate}";
 	                $category = $DB->select($queryCate)[0];
-	                $link = '/category/' . convertUtf8ToLatin($category['tendanhmuc']) . '-' . $category['id_danhmuc'];
+	                $link = '/category/' . convertUtf8ToLatin($category['name']) . '-' . $category['id'];
 	            ?>
-				<a href="<?php echo $link ?>"><?php echo $category['tendanhmuc'] ?></a>
+				<a href="<?php echo $link ?>"><?php echo $category['name'] ?></a>
 			<?php } else { ?>
 				<a href="/category/all-11">Tất cả</a>
 			<?php } ?>
@@ -36,7 +36,7 @@
 					$filter = 1;
 				}
 
-				$queryCate = "SELECT COUNT(id_tinraovat) AS sotin FROM tinraovat WHERE{$where}";
+				$queryCate = "SELECT COUNT(id) AS sotin FROM recruitment WHERE{$where}";
 				$resultCate = $DB->select($queryCate)[0];
                 
 				$rowCount = 15;
@@ -54,25 +54,6 @@
 				<div class="header-list-a">
 					<span class="icon-a fa fa-search"></span>
 					<a href="" title=""><?php echo 'Tìm kiếm' ?></a>	
-				</div>	
-				<div class="select-sort-new">
-					<ul>
-						<li>
-							<a href="/category.php?idCate=<?php echo $idCate ?>&filter=1" <?php echo ($filter == 1 ? "class='sort-active'" : ''); ?>>
-								Tin mới
-							</a>
-						</li>
-						<li>
-							<a href="/category.php?idCate=<?php echo $idCate?>&filter=2" <?php echo ($filter == 2 ? "class='sort-active'" : ''); ?>>
-								Giá Thấp
-							</a>
-						</li>
-						<li>
-							<a href="/category.php?idCate=<?php echo $idCate?>&filter=3" <?php echo ($filter == 3 ? "class='sort-active'" : ''); ?>>
-								Giá Cao
-							</a>
-						</li>
-					</ul>
 				</div>
 			</div>
 			<div class="clr"></div>
@@ -82,19 +63,19 @@
 					$offset = ($currentPage - 1) * $rowCount; 
 					switch ($filter) {
 						case 1:
-							$queryNews = "SELECT tinraovat.*,users.username FROM tinraovat
-							INNER JOIN users ON tinraovat.id_user=users.id_user WHERE{$where}
-							ORDER BY id_tinraovat DESC Limit {$offset},{$rowCount}";
+							$queryNews = "SELECT recruitment.*, users.username FROM recruitment
+							INNER JOIN users ON recruitment.user_id = users.id WHERE{$where}
+							ORDER BY id DESC Limit {$offset}, {$rowCount}";
 							break;
 						case 2:
-							$queryNews = "SELECT tinraovat.*,users.username FROM tinraovat
-							INNER JOIN users ON tinraovat.id_user=users.id_user WHERE{$where}
-							ORDER BY gia ASC Limit {$offset},{$rowCount}";
+							$queryNews = "SELECT recruitment.*, users.username FROM recruitment
+							INNER JOIN users ON recruitment.user_id = users.id WHERE{$where}
+							ORDER BY salary ASC Limit {$offset}, {$rowCount}";
 							break;
 						case 3:
-							$queryNews = "SELECT tinraovat.*,users.username FROM tinraovat
-							INNER JOIN users ON tinraovat.id_user=users.id_user WHERE{$where}
-							ORDER BY gia DESC Limit {$offset},{$rowCount}";
+							$queryNews = "SELECT recruitment.*, users.username FROM recruitment
+							INNER JOIN users ON recruitment.user_id = users.id WHERE{$where}
+							ORDER BY salary DESC Limit {$offset}, {$rowCount}";
 							break;
 					}
 
@@ -103,17 +84,17 @@
 					foreach ($resultNews as $news) {
 				?>
 					<li>
-						<a href="/detail.php?id=<?php echo $news['id_tinraovat'] ?>" title="">
-							<h2><?php echo $news['tentinraovat'] ?></h2>
-							<span class="place"><?php echo $news['noiban'] ?></span><br/>
+						<a href="/detail.php?id=<?php echo $news['id'] ?>" title="">
+							<h2><?php echo $news['title'] ?></h2>
+							<span class="place"><?php echo $news['location'] ?></span><br/>
 							<img src="/files/<?php echo $news['picture'] ?>" title="Tuyển dụng" alt=""/>
 							<br/>
-							<span class="price"><?php echo $news['gia'] ?><sup>đ</sup></span>
+							<span class="price"><?php echo $news['salary'] ?><sup>đ</sup></span>
 						</a>
 						<br/>
 						<h4>
 							Đăng bởi 
-							<a href="<?php echo '/timeline/'.convertUtf8ToLatin($news['username']) . '-' . $news['id_user'] ?>" class="user">
+							<a href="<?php echo '/timeline/'.convertUtf8ToLatin($news['username']) . '-' . $news['user_id'] ?>" class="user">
 								<?php echo $news['username'] ?>
 							</a>
 						</h4>

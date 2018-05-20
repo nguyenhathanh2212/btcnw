@@ -21,7 +21,7 @@
         <div class="right-footer col-sm-4">
             <h3 class="title-footer">Liên hệ quảng cáo</h3>
             <div class="icon-left-footer">
-                <a href=""><span class="fa fa-map-marker"></span> 193 Nguyễn Lương Bằng, Đà Nẵng</a>
+                <a href=""><span class="fa fa-map-marker"></span> 54 Nguyễn Lương Bằng, Đà Nẵng</a>
                 <a href=""><span class="fa fa-phone"></span> +123-456-789</a>
                 <a href=""><span class="fa fa-envelope"></span> xxx@gmail.com</a>
             </div>
