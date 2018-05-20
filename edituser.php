@@ -4,14 +4,14 @@
 	<!--content-->
 	<div class="content ">
 		<?php
-			if(!empty($_GET['idUser']) && $session->get('UserAuthenticate')['id_user'] == $_GET['idUser']) {
+			if(!empty($_GET['idUser']) && $session->get('UserAuthenticate')['id'] == $_GET['idUser']) {
 				$idUser = $_GET['idUser'];
 			} else {
 				header("location:/404.php");
 				exit();
 			}
 
-			$user = $DB->select("SELECT * FROM users WHERE id_user='{$idUser}'")[0];
+			$user = $DB->select("SELECT * FROM users WHERE id='{$idUser}'")[0];
 		?>
 		<div class="header-title-postnews">
 			<h2 class="tit"><i class="fa fa-shopping-cart"></i>Sửa thông tin</h2>

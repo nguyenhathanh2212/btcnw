@@ -26,7 +26,7 @@
 			<a href="" title="">TRANG CÁ NHÂN</a>
 		</div>
 		<?php 
-			$user = $DB->select("SELECT * FROM users WHERE id_user={$idUser}")[0];
+			$user = $DB->select("SELECT * FROM users WHERE id={$idUser}")[0];
 
 			if(empty($user['avatar'])) {		
 				$user['avatar'] = "avatarmacdinh.png";
@@ -48,16 +48,16 @@
 			<div class="contact-info">
 				<h2>THÔNG TIN LIÊN HỆ</h2>
 				<ul>
-					<li>Địa chỉ: <span><?php echo $user['diachi'] ?></span></li>
-					<li>Số điện thoại: <span><?php echo $user['sodienthoai'] ?></span></li>
+					<li>Địa chỉ: <span><?php echo $user['address'] ?></span></li>
+					<li>Số điện thoại: <span><?php echo $user['phone'] ?></span></li>
 					<li>Email: <span><?php echo $user['email'] ?></span></li>
-					<?php if ($session->has('UserAuthenticate') && $session->get('UserAuthenticate')['id_user'] == $idUser) { ?>
+					<?php if ($session->has('UserAuthenticate') && $session->get('UserAuthenticate')['id'] == $idUser) { ?>
 						<li>
 							<a href="<?php echo "/edit-user/edit-" . $idUser ?>">Thay đổi thông tin</a>
 						</li>
 					<?php } ?>
 				</ul>
-				<?php if (!$session->has('UserAuthenticate') || ($session->has('UserAuthenticate') && $session->get('UserAuthenticate')['id_user'] != $idUser)) { ?>
+				<?php if (!$session->has('UserAuthenticate') || ($session->has('UserAuthenticate') && $session->get('UserAuthenticate')['id'] != $idUser)) { ?>
 					<div class="contact-button">
 						<a href="mailto:<?php echo $user['email'] ?>" class="fa fa-envelope">
 							Gửi mail
@@ -74,22 +74,22 @@
 			<div class="list-all-new">
 				<ul>
 					<?php 
-						$query = "SELECT * FROM tinraovat 
-							WHERE id_user= {$idUser} 
-							ORDER BY id_tinraovat DESC LIMIT 10";
+						$query = "SELECT * FROM recruitment 
+							WHERE user_id= {$idUser} 
+							ORDER BY id DESC LIMIT 10";
 
 						$results = $DB->select($query);
 
 						foreach ($results as $news) {
-							$url="/detail/".convertUtf8ToLatin($news['tentinraovat']).'-'.$news['id_tinraovat'].".html";
+							$url="/detail/".convertUtf8ToLatin($news['title']).'-'.$news['id'].".html";
 					?>
 						<li>
 							<a href="<?php echo $url?>" title="">
-								<h2><?php echo $news['tentinraovat']?></h2>
-								<span class="place"><?php echo $news['noiban'] ?></span><br/>
+								<h2><?php echo $news['title']?></h2>
+								<span class="place"><?php echo $news['location'] ?></span><br/>
 								<img src="/files/<?php echo $news['picture'] ?>" title="" alt=""/>
 								<br/>
-								<span class="price"><?php echo $news['gia'] ?><sup>đ</sup></span>
+								<span class="price"><?php echo $news['salary'] ?><sup>đ</sup></span>
 							</a>
 							<br/>
 						</li>
