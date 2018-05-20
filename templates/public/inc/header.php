@@ -11,7 +11,6 @@
     <title>Sell & share</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="/libraries/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/libraries/bootstrap-3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/libraries/reset.css">
     <link rel="stylesheet" type="text/css" href="/templates/public/css/style.css">
     <link rel="shortcut icon" href="/templates/public/images/icon.ico" type="image/x-icon">
@@ -28,7 +27,7 @@
 <body>
     <!--header-->
     <div class="top-header row">
-        <div class="left-top-header col-xs-5">
+        <div class="left-top-header">
             <ul class="row">
                 <li><a href="/abouts" >Giới thiệu</a></li>
                 <li><a href="/guide" >Hướng dẫn</a></li>
@@ -36,7 +35,7 @@
                 <li><a href="/contact" >Liên hệ</a></li>
             </ul>
         </div>
-        <div class="right-top-header col-xs-2 col-xs-offset-5">
+        <div class="right-top-header">
             <div class="fa fa-user-circle-o"></div>
             <div class="user-log">
                 <?php if ($session->has('UserAuthenticate')) { ?>
@@ -54,10 +53,10 @@
         </div>
     </div>
     <div class="center-header row">
-        <div class="left-center-header col-sm-4">
+        <div class="left-center-header">
             <a href="/"><img src="/templates/public/images/logo.png" alt=""></a>
         </div>
-        <div class="right-center-header col-sm-5">
+        <div class="right-center-header">
             <div class="search row">
                 <?php
                     if(isset($_POST['tim'])){
@@ -68,8 +67,8 @@
                     }
                 ?>
                 <form method="POST" action="">
-                    <input type="text" name="timkiem" class="timkiem col-sm-7" id="timkiem" placeholder="Nhập từ khóa tìm kiếm..." />
-                    <select class="danhmuc-search col-sm-3" name="danhmuc">
+                    <input type="text" name="timkiem" class="timkiem" id="timkiem" placeholder="Nhập từ khóa tìm kiếm..." />
+                    <select class="danhmuc-search" name="danhmuc">
                         <option value="0">Tất cả</option>
                         <?php
                             $result = $DB->select("SELECT * FROM category");
@@ -81,11 +80,11 @@
                             </option>
                         <?php }?>
                     </select>
-                    <button type="submit" id="tim" class="fa fa-search tim col-sm-2" name="tim"></button>
+                    <button type="submit" id="tim" class="fa fa-search tim" name="tim"></button>
                 </form>
             </div>
         </div>
-        <div class="upnew-button col-sm-3">
+        <div class="upnew-button">
             <a href="/postnews">Đăng tin mới</a>
         </div>
     </div>

@@ -14,7 +14,7 @@
 	<!--content-->
 	<div class="content">
 		<div class="top-content row">
-			<div class="left-top-content col-sm-7">
+			<div class="left-top-content">
 				<ul class="bxslider">
 				<?php
 					$resultNews = $DB->select("SELECT * FROM recruitment ORDER BY id DESC Limit 5");
@@ -40,7 +40,7 @@
 				<?php } ?>
 				</ul>
 			</div>
-			<div class="right-top-content col-sm-5">
+			<div class="right-top-content">
 				<ul class="bxslider2">
 					<?php
 						$resultQC = $DB->select("SELECT * FROM advertisement ORDER BY id DESC Limit 5");
