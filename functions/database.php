@@ -5,7 +5,7 @@
 		private $host = 'localhost';
 		private $username = 'root';
 		private $password = '';
-		private $dbName = 'websitettcn';	
+		private $dbName = 'btcnw';	
 		private $connection = '';
 
 		public function connect()

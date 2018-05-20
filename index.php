@@ -1,4 +1,4 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT']."/templates/public/inc/header.php" ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . "/templates/public/inc/header.php" ?>
 	<?php if ($session->has('msgSuccess')) { ?>
 		<div class="alert-message success">
 			<?php echo $session->get('msgSuccess'); ?>
@@ -17,19 +17,25 @@
 			<div class="left-top-content col-sm-7">
 				<ul class="bxslider">
 				<?php
-					$resultNews = $DB->select("SELECT * FROM tinraovat ORDER BY id_tinraovat DESC Limit 5");
+					$resultNews = $DB->select("SELECT * FROM recruitment ORDER BY id DESC Limit 5");
 				?>
 
 				<?php foreach ($resultNews as $news) {
-						if($news['picture'] == ''){
-							$news['picture'] = "salemacdinh.png";
-						}
+					if($news['picture'] == ''){
+						$news['picture'] = "salemacdinh.png";
+					}
 
-						$url = "/detail/" . convertUtf8ToLatin($news['tentinraovat']) . '-' . $news['id_tinraovat'].".html";
+					$url = "/detail/" . convertUtf8ToLatin($news['title']) . '-' . $news['id'] . ".html";
 				?>
 				  	<li class="li-slider"><a href="<?php echo $url?>"><img src="/files/<?php echo $news['picture'] ?>" /></a>
-				  		<h3 class="h3-slider"><a href="<?php echo $url?>"><?php echo $news['tentinraovat'] ?></a>
-				  		<p><?php echo $news['mota'] ?></p></h3>
+				  		<h3 class="h3-slider">
+				  			<a href="<?php echo $url?>">
+					  			<?php echo $news['title'] ?>
+				  			</a>
+				  			<p style="text-align: left;">
+				  				<?php echo substr($news['description'], 0, 350); ?> ...
+				  			</p>
+				  		</h3>
 				  	</li>
 				<?php } ?>
 				</ul>
@@ -37,13 +43,13 @@
 			<div class="right-top-content col-sm-5">
 				<ul class="bxslider2">
 					<?php
-						$resultQC = $DB->select("SELECT * FROM quangcao ORDER BY id_qc DESC Limit 5");
+						$resultQC = $DB->select("SELECT * FROM advertisement ORDER BY id DESC Limit 5");
 					?>
 
 					<?php foreach ($resultQC as $qc) { ?>
 					  	<li class="li-slider">
-					  		<a href="<?php echo $qc['website'] ?>">
-					  			<img src="/files/<?php echo $qc['anhquangcao'] ?>" />
+					  		<a href="<?php echo $qc['link'] ?>">
+					  			<img src="/files/<?php echo $qc['picture'] ?>" />
 					  		</a>
 					  	</li>
 					<?php } ?>
@@ -54,33 +60,33 @@
 			<div class="all-new wow fadeInUp">
 				<div class="header-list">
 					<div class="icon-index fa fa-star"></div>
-					<a href="/category/all-11" title="">TIN TOÀN QUỐC</a>
+					<a href="/category/all-11" title="">TUYỂN DỤNG TOÀN QUỐC</a>
 				</div>
 				<?php
 					
-					$arSoTin = $DB->select("SELECT COUNT(id_tinraovat) AS sotin FROM tinraovat");
+					$arSoTin = $DB->select("SELECT COUNT(id) AS sotin FROM recruitment");
 
 					$rowCount = 10;
 					$pageCount = ceil($arSoTin[0]['sotin'] / $rowCount);
 
-					if($pageCount > 6) {
+					if ($pageCount > 6) {
 						$pageCount = 6;
 					}
 
 					$currentPage = 1;
 
-					if(!empty($_GET['idpage'])){
-						$currentPage=$_GET['idpage'];
+					if (!empty($_GET['idpage'])) {
+						$currentPage = $_GET['idpage'];
 					}
 				?>
 				<div class="list-all-new wow fadeInUp">
 					<ul>
 						<?php
 							$offset = ($currentPage - 1) * $rowCount;
-							$queryNews = "SELECT tinraovat.*,users.username 
-								FROM tinraovat
-								INNER JOIN users ON tinraovat.id_user=users.id_user
-								ORDER BY id_tinraovat DESC Limit {$offset}, 5";
+							$queryNews = "SELECT recruitment.*,users.username 
+								FROM recruitment
+								INNER JOIN users ON recruitment.user_id=users.id
+								ORDER BY id DESC Limit {$offset}, 5";
 
 							$resultNews = $DB->select($queryNews);
 						
@@ -89,20 +95,20 @@
 									$news['picture'] = "salemacdinh.png";
 								}
 
-								$url = "/detail/" . convertUtf8ToLatin($news['tentinraovat']) . '-' . $news['id_tinraovat'] . ".html";
+								$url = "/detail/" . convertUtf8ToLatin($news['title']) . '-' . $news['id'] . ".html";
 						?>
 							<li>
 								<a href="<?php echo $url ?>" title="">
-									<h2><?php echo $news['tentinraovat'] ?></h2>
-									<span class="place"><?php echo $news['noiban'] ?></span><br/>
+									<h2><?php echo $news['title'] ?></h2>
+									<span class="place"><?php echo $news['location'] ?></span><br/>
 									<img src="/files/<?php echo $news['picture'] ?>" title="Tuyển dụng" alt=""/>
 									<br/>
-									<span class="price"><?php echo $news['gia'] ?><sup>đ</sup></span>
+									<span class="price"><?php echo $news['salary'] ?><sup>đ</sup></span>
 								</a>
 								<br/>
 								<h4>
 									Đăng bởi 
-									<a href="<?php echo '/timeline/'.convertUtf8ToLatin($news['username']).'-'.$news['id_user'] ?>" class="user">
+									<a href="<?php echo '/timeline/'.convertUtf8ToLatin($news['username']).'-'.$news['user_id'] ?>" class="user">
 										<?php echo $news['username'] ?>
 									</a>
 								</h4>
@@ -114,10 +120,10 @@
 					<ul>
 						<?php
 							$offset += 5;
-							$queryNews = "SELECT tinraovat.*,users.username 
-								FROM tinraovat
-								INNER JOIN users ON tinraovat.id_user=users.id_user 
-								ORDER BY id_tinraovat DESC Limit {$offset},5";
+							$queryNews = "SELECT recruitment.*,users.username 
+								FROM recruitment
+								INNER JOIN users ON recruitment.user_id=users.id 
+								ORDER BY id DESC Limit {$offset},5";
 							
 							$resultNews = $DB->select($queryNews);
 
@@ -126,20 +132,20 @@
 									$news['picture'] = "salemacdinh.png";
 								}
 
-								$url = "/detail/" .convertUtf8ToLatin($news['tentinraovat']) . '-' . $news['id_tinraovat'] . ".html";
+								$url = "/detail/" .convertUtf8ToLatin($news['title']) . '-' . $news['id'] . ".html";
 						?>
 							<li>
 								<a href="<?php echo $url ?>" title="">
-									<h2><?php echo $news['tentinraovat'] ?></h2>
-									<span class="place"><?php echo $news['noiban'] ?></span><br/>
+									<h2><?php echo $news['title'] ?></h2>
+									<span class="place"><?php echo $news['location'] ?></span><br/>
 									<img src="/files/<?php echo $news['picture']?>" title="Tuyển dụng" alt=""/>
 									<br/>
-									<span class="price"><?php echo $news['gia'] ?><sup>đ</sup></span>
+									<span class="price"><?php echo $news['salary'] ?><sup>đ</sup></span>
 								</a>
 								<br/>
 								<h4>
 									Đăng bởi 
-									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['id_user'] ?>" class="user">
+									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['user_id'] ?>" class="user">
 										<?php echo $news['username'] ?>
 									</a>
 								</h4>
@@ -155,34 +161,34 @@
 				<div class="list-sub-new wow fadeInUp">
 					<div class="header-list">
 						<div class="icon-index fa fa-paw"></div>
-						<a href="/category/thu-nuoi-1" title="">THÚ NUÔI</a>
+						<a href="/category/thu-nuoi-1" title=""> BÁC SĨ</a>
 					</div>
 					<ul>
 						<?php
-							$queryNews = "SELECT tinraovat.*,users.username 
-								FROM tinraovat
-								INNER JOIN users ON tinraovat.id_user=users.id_user 
-								WHERE id_danhmucsanpham=1
-								ORDER BY id_tinraovat DESC Limit 5";
+							$queryNews = "SELECT recruitment.*,users.username 
+								FROM recruitment
+								INNER JOIN users ON recruitment.user_id=users.id 
+								WHERE category_id=1
+								ORDER BY id DESC Limit 5";
 
 							$resultNews = $DB->select($queryNews);
 
 							foreach ($resultNews as $news) {
-								if($news['picture'] == ""){
+								if ($news['picture'] == "") {
 									$news['picture'] = "salemacdinh.png";
 								}
 
-								$url = "/detail/" . convertUtf8ToLatin($news['tentinraovat']) . '-' . $news['id_tinraovat'] . ".html";
+								$url = "/detail/" . convertUtf8ToLatin($news['title']) . '-' . $news['id'] . ".html";
 						?>
 							<li class="wow fadeInUp">
 								<a href="<?php echo $url?>" title="">
 									<img src="/files/<?php echo $news['picture'] ?>" title="" alt=""/>
-									<h2><?php echo $news['tentinraovat'] ?></h2>	
-									<span class="place"><?php echo $news['noiban'] ?></span><br/>
+									<h2><?php echo $news['title'] ?></h2>	
+									<span class="place"><?php echo $news['location'] ?></span><br/>
 								</a>	
 								<h4>
 									Đăng bởi 
-									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['id_user'] ?>" class="user" alt="">
+									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['user_id'] ?>" class="user" alt="">
 										<?php echo $news['username']?>
 									</a>
 								</h4>
@@ -196,34 +202,34 @@
 				<div class="list-sub-new wow fadeInUp" data-wow-delay="0.5s">
 					<div class="header-list">
 						<div class="icon-index fa fa-car"></div>
-						<a href="/category/xe-co-2" title="">XE CỘ</a>
+						<a href="/category/xe-co-2" title="">BÁN HÀNG</a>
 					</div>
 					<ul>
 						<?php
-							$queryNews = "SELECT tinraovat.*,users.username 
-								FROM tinraovat
-								RIGHT JOIN users ON tinraovat.id_user=users.id_user 
-								WHERE id_danhmucsanpham=2
-								ORDER BY id_tinraovat DESC Limit 5";
+							$queryNews = "SELECT recruitment.*,users.username 
+								FROM recruitment
+								RIGHT JOIN users ON recruitment.user_id=users.id 
+								WHERE category_id=2
+								ORDER BY id DESC Limit 5";
 
 							$resultNews = $DB->select($queryNews);
 
 							foreach ($resultNews as $news) {
-								if($news['picture'] == ""){
+								if ($news['picture'] == "") {
 									$news['picture'] = "salemacdinh.png";
 								}
 
-								$url = "/detail/" . convertUtf8ToLatin($news['tentinraovat']) . '-' . $news['id_tinraovat'] . ".html";
+								$url = "/detail/" . convertUtf8ToLatin($news['title']) . '-' . $news['id'] . ".html";
 						?>
 							<li class="wow fadeInUp">
 								<a href="<?php echo $url?>" title="">
 									<img src="/files/<?php echo $news['picture'] ?>" title="" alt=""/>
-									<h2><?php echo $news['tentinraovat'] ?></h2>	
-									<span class="place"><?php echo $news['noiban'] ?></span><br/>
+									<h2><?php echo $news['title'] ?></h2>	
+									<span class="place"><?php echo $news['location'] ?></span><br/>
 								</a>	
 								<h4>
 									Đăng bởi 
-									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['id_user'] ?>" class="user" alt="">
+									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['user_id'] ?>" class="user" alt="">
 										<?php echo $news['username']?>
 									</a>
 								</h4>
@@ -237,34 +243,34 @@
 				<div class="list-sub-new wow fadeInUp">
 					<div class="header-list">
 						<div class="icon-index fa fa-laptop"></div>
-						<a href="/category/dien-tu-3" title="">ĐIỆN TỬ</a>
+						<a href="/category/dien-tu-3" title="">BẢO HIỂM</a>
 					</div>
 					<ul>
 						<?php
-							$queryNews = "SELECT tinraovat.*,users.username 
-								FROM tinraovat
-								INNER JOIN users ON tinraovat.id_user=users.id_user 
-								WHERE id_danhmucsanpham=3
-								ORDER BY id_tinraovat DESC Limit 5";
+							$queryNews = "SELECT recruitment.*,users.username 
+								FROM recruitment
+								RIGHT JOIN users ON recruitment.user_id=users.id 
+								WHERE category_id=3
+								ORDER BY id DESC Limit 5";
 
 							$resultNews = $DB->select($queryNews);
 
 							foreach ($resultNews as $news) {
-								if($news['picture'] == ""){
+								if ($news['picture'] == "") {
 									$news['picture'] = "salemacdinh.png";
 								}
 
-								$url = "/detail/" . convertUtf8ToLatin($news['tentinraovat']) . '-' . $news['id_tinraovat'] . ".html";
+								$url = "/detail/" . convertUtf8ToLatin($news['title']) . '-' . $news['id'] . ".html";
 						?>
 							<li class="wow fadeInUp">
 								<a href="<?php echo $url?>" title="">
 									<img src="/files/<?php echo $news['picture'] ?>" title="" alt=""/>
-									<h2><?php echo $news['tentinraovat'] ?></h2>	
-									<span class="place"><?php echo $news['noiban'] ?></span><br/>
+									<h2><?php echo $news['title'] ?></h2>	
+									<span class="place"><?php echo $news['location'] ?></span><br/>
 								</a>	
 								<h4>
 									Đăng bởi 
-									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['id_user'] ?>" class="user" alt="">
+									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['user_id'] ?>" class="user" alt="">
 										<?php echo $news['username']?>
 									</a>
 								</h4>
@@ -282,30 +288,30 @@
 					</div>
 					<ul>						
 						<?php
-							$queryNews = "SELECT tinraovat.*,users.username 
-								FROM tinraovat
-								INNER JOIN users ON tinraovat.id_user=users.id_user 
-								WHERE id_danhmucsanpham=4
-								ORDER BY id_tinraovat DESC Limit 5";
+							$queryNews = "SELECT recruitment.*,users.username 
+								FROM recruitment
+								RIGHT JOIN users ON recruitment.user_id=users.id 
+								WHERE category_id=4
+								ORDER BY id DESC Limit 5";
 
 							$resultNews = $DB->select($queryNews);
 
 							foreach ($resultNews as $news) {
-								if($news['picture'] == ""){
+								if ($news['picture'] == "") {
 									$news['picture'] = "salemacdinh.png";
 								}
 
-								$url = "/detail/" . convertUtf8ToLatin($news['tentinraovat']) . '-' . $news['id_tinraovat'] . ".html";
+								$url = "/detail/" . convertUtf8ToLatin($news['title']) . '-' . $news['id'] . ".html";
 						?>
 							<li class="wow fadeInUp">
 								<a href="<?php echo $url?>" title="">
 									<img src="/files/<?php echo $news['picture'] ?>" title="" alt=""/>
-									<h2><?php echo $news['tentinraovat'] ?></h2>	
-									<span class="place"><?php echo $news['noiban'] ?></span><br/>
+									<h2><?php echo $news['title'] ?></h2>	
+									<span class="place"><?php echo $news['location'] ?></span><br/>
 								</a>	
 								<h4>
 									Đăng bởi 
-									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['id_user'] ?>" class="user" alt="">
+									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['user_id'] ?>" class="user" alt="">
 										<?php echo $news['username']?>
 									</a>
 								</h4>
@@ -319,34 +325,34 @@
 				<div class="list-sub-new wow fadeInUp">
 					<div class="header-list">
 						<div class="icon-index fa fa-female"></div>
-						<a href="/category/the-thao-5" title="">THỂ THAO</a>
+						<a href="/category/the-thao-5" title="">PHIÊN DỊCH</a>
 					</div>
 					<ul>
 						<?php
-							$queryNews = "SELECT tinraovat.*,users.username 
-								FROM tinraovat
-								INNER JOIN users ON tinraovat.id_user=users.id_user 
-								WHERE id_danhmucsanpham=5
-								ORDER BY id_tinraovat DESC Limit 5";
+							$queryNews = "SELECT recruitment.*,users.username 
+								FROM recruitment
+								RIGHT JOIN users ON recruitment.user_id=users.id 
+								WHERE category_id=5
+								ORDER BY id DESC Limit 5";
 
 							$resultNews = $DB->select($queryNews);
 
 							foreach ($resultNews as $news) {
-								if($news['picture'] == ""){
+								if ($news['picture'] == "") {
 									$news['picture'] = "salemacdinh.png";
 								}
 
-								$url = "/detail/" . convertUtf8ToLatin($news['tentinraovat']) . '-' . $news['id_tinraovat'] . ".html";
+								$url = "/detail/" . convertUtf8ToLatin($news['title']) . '-' . $news['id'] . ".html";
 						?>
 							<li class="wow fadeInUp">
 								<a href="<?php echo $url?>" title="">
 									<img src="/files/<?php echo $news['picture'] ?>" title="" alt=""/>
-									<h2><?php echo $news['tentinraovat'] ?></h2>	
-									<span class="place"><?php echo $news['noiban'] ?></span><br/>
+									<h2><?php echo $news['title'] ?></h2>	
+									<span class="place"><?php echo $news['location'] ?></span><br/>
 								</a>	
 								<h4>
 									Đăng bởi 
-									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['id_user'] ?>" class="user" alt="">
+									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['user_id'] ?>" class="user" alt="">
 										<?php echo $news['username']?>
 									</a>
 								</h4>
@@ -360,34 +366,34 @@
 				<div class="list-sub-new wow fadeInUp" data-wow-delay="0.5s">
 					<div class="header-list">
 						<div class="icon-index fa fa-bicycle"></div>
-						<a href="/category/thoi-trang-6" title="">THỜI TRANG</a>
+						<a href="/category/thoi-trang-6" title="">CƠ KHÍ</a>
 					</div>
 					<ul>
 						<?php
-							$queryNews = "SELECT tinraovat.*,users.username 
-								FROM tinraovat
-								INNER JOIN users ON tinraovat.id_user=users.id_user 
-								WHERE id_danhmucsanpham=6
-								ORDER BY id_tinraovat DESC Limit 5";
+							$queryNews = "SELECT recruitment.*,users.username 
+								FROM recruitment
+								RIGHT JOIN users ON recruitment.user_id=users.id 
+								WHERE category_id=6
+								ORDER BY id DESC Limit 5";
 
 							$resultNews = $DB->select($queryNews);
 
 							foreach ($resultNews as $news) {
-								if($news['picture'] == ""){
+								if ($news['picture'] == "") {
 									$news['picture'] = "salemacdinh.png";
 								}
 
-								$url = "/detail/" . convertUtf8ToLatin($news['tentinraovat']) . '-' . $news['id_tinraovat'] . ".html";
+								$url = "/detail/" . convertUtf8ToLatin($news['title']) . '-' . $news['id'] . ".html";
 						?>
 							<li class="wow fadeInUp">
 								<a href="<?php echo $url?>" title="">
 									<img src="/files/<?php echo $news['picture'] ?>" title="" alt=""/>
-									<h2><?php echo $news['tentinraovat'] ?></h2>	
-									<span class="place"><?php echo $news['noiban'] ?></span><br/>
+									<h2><?php echo $news['title'] ?></h2>	
+									<span class="place"><?php echo $news['location'] ?></span><br/>
 								</a>	
 								<h4>
 									Đăng bởi 
-									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['id_user'] ?>" class="user" alt="">
+									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['user_id'] ?>" class="user" alt="">
 										<?php echo $news['username']?>
 									</a>
 								</h4>
@@ -401,33 +407,34 @@
 				<div class="list-sub-new wow fadeInUp">
 					<div class="header-list">
 						<div class="icon-index fa fa-user"></div>
-						<a href="/category/tuyen-dung-7" title="">TUYỂN DỤNG</a>
+						<a href="/category/tuyen-dung-7" title="">DỆT MAY - GIÀY DA</a>
 					</div>
 					<ul>
 						<?php
-							$queryNews = "SELECT tinraovat.*,users.username FROM tinraovat
-								INNER JOIN users ON tinraovat.id_user=users.id_user 
-								WHERE id_danhmucsanpham=7
-								ORDER BY id_tinraovat DESC Limit 5";
+							$queryNews = "SELECT recruitment.*,users.username 
+								FROM recruitment
+								RIGHT JOIN users ON recruitment.user_id=users.id 
+								WHERE category_id=7
+								ORDER BY id DESC Limit 5";
 
 							$resultNews = $DB->select($queryNews);
 
 							foreach ($resultNews as $news) {
-								if($news['picture'] == ""){
+								if ($news['picture'] == "") {
 									$news['picture'] = "salemacdinh.png";
 								}
 
-								$url = "/detail/" . convertUtf8ToLatin($news['tentinraovat']) . '-' . $news['id_tinraovat'] . ".html";
+								$url = "/detail/" . convertUtf8ToLatin($news['title']) . '-' . $news['id'] . ".html";
 						?>
 							<li class="wow fadeInUp">
 								<a href="<?php echo $url?>" title="">
 									<img src="/files/<?php echo $news['picture'] ?>" title="" alt=""/>
-									<h2><?php echo $news['tentinraovat'] ?></h2>	
-									<span class="place"><?php echo $news['noiban'] ?></span><br/>
+									<h2><?php echo $news['title'] ?></h2>	
+									<span class="place"><?php echo $news['location'] ?></span><br/>
 								</a>	
 								<h4>
 									Đăng bởi 
-									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['id_user'] ?>" class="user" alt="">
+									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['user_id'] ?>" class="user" alt="">
 										<?php echo $news['username']?>
 									</a>
 								</h4>
@@ -441,33 +448,34 @@
 				<div class="list-sub-new wow fadeInUp" data-wow-delay="0.5s">
 					<div class="header-list">
 						<div class="icon-index fa fa-cutlery"></div>
-						<a href="/category/thuc-pham-8" title="">THỰC PHẨM</a>
+						<a href="/category/thuc-pham-8" title="">DƯỢC SĨ</a>
 					</div>
 					<ul>
 						<?php
-							$queryNews = "SELECT tinraovat.*,users.username FROM tinraovat
-								INNER JOIN users ON tinraovat.id_user=users.id_user 
-								WHERE id_danhmucsanpham=8
-								ORDER BY id_tinraovat DESC Limit 5";
+							$queryNews = "SELECT recruitment.*,users.username 
+								FROM recruitment
+								RIGHT JOIN users ON recruitment.user_id=users.id 
+								WHERE category_id=8
+								ORDER BY id DESC Limit 5";
 
 							$resultNews = $DB->select($queryNews);
 
 							foreach ($resultNews as $news) {
-								if($news['picture'] == ""){
+								if ($news['picture'] == "") {
 									$news['picture'] = "salemacdinh.png";
 								}
 
-								$url = "/detail/" . convertUtf8ToLatin($news['tentinraovat']) . '-' . $news['id_tinraovat'] . ".html";
+								$url = "/detail/" . convertUtf8ToLatin($news['title']) . '-' . $news['id'] . ".html";
 						?>
 							<li class="wow fadeInUp">
 								<a href="<?php echo $url?>" title="">
 									<img src="/files/<?php echo $news['picture'] ?>" title="" alt=""/>
-									<h2><?php echo $news['tentinraovat'] ?></h2>	
-									<span class="place"><?php echo $news['noiban'] ?></span><br/>
+									<h2><?php echo $news['title'] ?></h2>	
+									<span class="place"><?php echo $news['location'] ?></span><br/>
 								</a>	
 								<h4>
 									Đăng bởi 
-									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['id_user'] ?>" class="user" alt="">
+									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['user_id'] ?>" class="user" alt="">
 										<?php echo $news['username']?>
 									</a>
 								</h4>
@@ -481,33 +489,34 @@
 				<div class="list-sub-new wow fadeInUp">
 					<div class="header-list">
 						<div class="icon-index fa fa-shower"></div>
-						<a href="/category/noi-ngoai-that-9" title="">NỘI NGOẠI THẤT</a>
+						<a href="/category/noi-ngoai-that-9" title="">CÔNG NGHỆ THÔNG TIN</a>
 					</div>
 					<ul>
 						<?php
-							$queryNews = "SELECT tinraovat.*,users.username FROM tinraovat
-								INNER JOIN users ON tinraovat.id_user=users.id_user 
-								WHERE id_danhmucsanpham=9
-								ORDER BY id_tinraovat DESC Limit 5";
+							$queryNews = "SELECT recruitment.*,users.username 
+								FROM recruitment
+								RIGHT JOIN users ON recruitment.user_id=users.id 
+								WHERE category_id=9
+								ORDER BY id DESC Limit 5";
 
 							$resultNews = $DB->select($queryNews);
 
 							foreach ($resultNews as $news) {
-								if($news['picture'] == ""){
+								if ($news['picture'] == "") {
 									$news['picture'] = "salemacdinh.png";
 								}
 
-								$url = "/detail/" . convertUtf8ToLatin($news['tentinraovat']) . '-' . $news['id_tinraovat'] . ".html";
+								$url = "/detail/" . convertUtf8ToLatin($news['title']) . '-' . $news['id'] . ".html";
 						?>
 							<li class="wow fadeInUp">
 								<a href="<?php echo $url?>" title="">
 									<img src="/files/<?php echo $news['picture'] ?>" title="" alt=""/>
-									<h2><?php echo $news['tentinraovat'] ?></h2>	
-									<span class="place"><?php echo $news['noiban'] ?></span><br/>
+									<h2><?php echo $news['title'] ?></h2>	
+									<span class="place"><?php echo $news['location'] ?></span><br/>
 								</a>	
 								<h4>
 									Đăng bởi 
-									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['id_user'] ?>" class="user" alt="">
+									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['user_id'] ?>" class="user" alt="">
 										<?php echo $news['username']?>
 									</a>
 								</h4>
@@ -525,29 +534,30 @@
 					</div>
 					<ul>
 						<?php
-							$queryNews = "SELECT tinraovat.*,users.username FROM tinraovat
-								INNER JOIN users ON tinraovat.id_user=users.id_user 
-								WHERE id_danhmucsanpham=10
-								ORDER BY id_tinraovat DESC Limit 5";
+							$queryNews = "SELECT recruitment.*,users.username 
+								FROM recruitment
+								RIGHT JOIN users ON recruitment.user_id=users.id 
+								WHERE category_id=10
+								ORDER BY id DESC Limit 5";
 
 							$resultNews = $DB->select($queryNews);
 
 							foreach ($resultNews as $news) {
-								if($news['picture'] == ""){
+								if ($news['picture'] == "") {
 									$news['picture'] = "salemacdinh.png";
 								}
 
-								$url = "/detail/" . convertUtf8ToLatin($news['tentinraovat']) . '-' . $news['id_tinraovat'] . ".html";
+								$url = "/detail/" . convertUtf8ToLatin($news['title']) . '-' . $news['id'] . ".html";
 						?>
 							<li class="wow fadeInUp">
 								<a href="<?php echo $url?>" title="">
 									<img src="/files/<?php echo $news['picture'] ?>" title="" alt=""/>
-									<h2><?php echo $news['tentinraovat'] ?></h2>	
-									<span class="place"><?php echo $news['noiban'] ?></span><br/>
+									<h2><?php echo $news['title'] ?></h2>	
+									<span class="place"><?php echo $news['location'] ?></span><br/>
 								</a>	
 								<h4>
 									Đăng bởi 
-									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['id_user'] ?>" class="user" alt="">
+									<a href="<?php echo '/timeline/' . convertUtf8ToLatin($news['username']) . '-' . $news['user_id'] ?>" class="user" alt="">
 										<?php echo $news['username']?>
 									</a>
 								</h4>
