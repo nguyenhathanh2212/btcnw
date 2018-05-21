@@ -104,7 +104,7 @@
 		            <ul class="ul-list-cmt">
 		                <?php
 		                    $queryCmt = "SELECT * FROM comment 
-			                    WHERE id = {$id} 
+			                    WHERE recruitment_id = {$id} 
 			                    ORDER BY created_at DESC ";
 
 		                    $resultCmt = $DB->select($queryCmt);
@@ -114,7 +114,7 @@
 		                        $hourCreateCmt=date("H:i:s", strtotime($comment['created_at']));
 		                ?>
 			                <li class="li-list-cmt">
-			                    <h4><?php echo $comment['tennguoicmt'] ?></h4>
+			                    <h4><?php echo $comment['username'] ?></h4>
 			                    <div  class="detail-cmt">
 			                        <span><?php echo $hourCreateCmt?></span> | <span><?php echo $dayCreateCmt?></span> | <span><?php echo $comment['email'] ?></span>
 			                    </div>

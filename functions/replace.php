@@ -32,5 +32,12 @@
 	    return $text;
 	}
 
+	function str_limit($str, $number)
+	{
+		if (strlen($str) > $number) {
+   			$str = substr($str, 0, $number) . '...';
+		}
 
+		return $str;
+	}
 ?>

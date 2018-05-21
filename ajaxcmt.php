@@ -14,7 +14,9 @@
         'username' => $hoten,
         'email' => $email,
         'content' => $content,
+        'created_at' => $date,
     ]);
+    
     echo "<li class='li-list-cmt'>";
     echo "<h4>{$hoten}</h4>";
     echo "<div  class='detail-cmt'>";
