@@ -194,22 +194,42 @@ label.error {
   text-decoration: none;
 }
 
+.header-content {
+	padding-bottom: 12px
+}
+
 .header-content .select-sort-new {
-	width: 33%;
+	width: 40%;
 	float:right;
 	height: 30px;
 }
 
+img.hoa {
+    margin-top: 10px;
+}
+
+.notice {
+    color: #177fff;
+    background-color: #8eefef;
+    border: 2px solid #2eccaf;
+    padding: 10px 30px;
+    border-radius: 8px;
+    right: 0;
+    z-index: 10000;
+    text-align: center;
+    margin: 20px 20px 10px 20px;
+}
+
 .header-content .select-sort-new ul li {
 	padding: 0;
-	width: 85px;
+	width: 95px;
 	text-align: center;	
 	margin: 0 5px;
 	display: inline-block;
 }
 
 .header-content .select-sort-new ul li:first-child, .header-content .select-sort-new ul li:nth-child(2) {
-	width: 55px;
+	width: 80px;
 }
 
 .header-content .select-sort-new ul li a {

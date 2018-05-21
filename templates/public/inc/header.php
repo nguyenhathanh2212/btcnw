@@ -92,8 +92,8 @@
         <ul>
             <li><a href="/" class="fa fa-home"></a></li>
             <li><a href="/category/vat-nuoi-1" class="fa fa-user-md"></span> Bác sĩ</a></li>
-            <li><a href="/category/xe-co-2" class="fa shopping-cart"> Bán hàng</a></li>
-            <li><a href="/category/dien-tu-3" class="fa address-card-o"> Bảo hiểm</a></li>
+            <li><a href="/category/xe-co-2" class="fa fa-shopping-cart"> Bán hàng</a></li>
+            <li><a href="/category/dien-tu-3" class="fa fa-podcast"> Bảo hiểm</a></li>
             <li><a href="/category/bat-dong-san-4" class="fa fa-home"> Bất động sản</a></li>
             <li><a href="/category/the-thao-5" class="fa fa-users"> Phiên dịch</a></li>
             <li><a href="/category/thoi-trang-6" class="fa fa-ship"> Cơ khí</a></li>

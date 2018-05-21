@@ -66,45 +66,45 @@ $(document).ready(function() {
 	 
 	$(".form-addtin").validate({
 		rules:{
-			"ten": {
+			"name": {
 				required:true,
 			},
-			"danhmuc": {
+			"category_id": {
 				required:true,
 			},
-			"gia": {
+			"salary": {
 				required:true,
 				number:true,
 			},
-			"noiban": {
+			"location": {
 				required:true,
 			},
-			"mota": {
+			"description": {
 				required:true,
 			},
-			"sodienthoai":{
+			"phone":{
 				required:true,
 				number:true,
 			},
 		},
 		messages:{
-			"ten": {
+			"name": {
 				required:"Vui lòng nhập tên tin rao bán!",
 			},
-			"danhmuc": {
+			"category_id": {
 				required:"Vui lòng chọn danh mục !",
 			},
-			"gia": {
+			"salary": {
 				required:"Vui lòng nhập giá !",
 				number:"Vui lòng nhập đúng định dạng" ,
 			},
-			"noiban": {
+			"location": {
 				required:"Vui lòng nhập nơi bán !",
 			},
-			"mota": {
+			"description": {
 				required:"Vui lòng nhập mô tả !",
 			},
-			"sodienthoai":{
+			"phone":{
 				required:"Vui lòng nhập số điện thoại !",
 				number:"Vui lòng nhập đúng định dạng số !",
 			}
