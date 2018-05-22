@@ -47,11 +47,9 @@ a:hover {
     margin: 0;
 }
 
-.left-center-header {
-}
-
 .left-center-header img {
-	width: 430px;
+    width: 200px;
+    margin: 0 7em;
 }
 
 .right-center-header .search {
@@ -328,7 +326,7 @@ a:hover {
 }
 
 .list-all-new ul:last-child li {
-	border-bottom: 1px solid #fff;
+	border-bottom: 1px solid #ebebeb;
 }
 
 .list-all-new ul li:last-child {
@@ -342,7 +340,7 @@ a:hover {
 
 .list-all-new ul li img {
 	width: 200px;
-	height: 250px;
+	height: 140px;
 	margin: 10px 12.5px;
 }
 
@@ -809,12 +807,6 @@ a:hover {
 
 .list-all-new ul:last-child {
 	padding-bottom: 0;
-}
-
-.list-all-new ul li img {
-	width: 200px;
-	height: 250px;
-	margin: 10px 12.5px;
 }
 
 .list-all-new ul li h4 {

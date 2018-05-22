@@ -325,3 +325,8 @@ img.hoa {
     background-color: #afef8e;
     border: 2px solid #46cc2e;
 }
+
+a.add.advertisement {
+    display: block;
+    margin-bottom: 15px;
+}
