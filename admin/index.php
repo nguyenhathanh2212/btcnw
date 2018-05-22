@@ -1,5 +1,5 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT']."/templates/admin/inc/header.php" ?>
-<?php require_once $_SERVER['DOCUMENT_ROOT']."/functions/checkuser.php" ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT']."/templates/admin/inc/header.php"; ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT']."/functions/checkuser.php"; ?>
 <!--content-->
 <div class="content">
 	<div>

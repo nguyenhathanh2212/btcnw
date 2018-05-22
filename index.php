@@ -48,7 +48,7 @@
 
 					<?php foreach ($resultQC as $qc) { ?>
 					  	<li class="li-slider">
-					  		<a href="<?php echo $qc['link'] ?>">
+					  		<a href="http://<?php echo $qc['link'] ?>" target="_blank">
 					  			<img src="/files/<?php echo $qc['picture'] ?>" />
 					  		</a>
 					  	</li>

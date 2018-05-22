@@ -113,10 +113,10 @@ $(document).ready(function() {
 
 	$(".form-addQc").validate({
 		rules:{
-			"congtyquangcao": {
+			"company": {
 				required:true,
 			},
-			"website": {
+			"link": {
 				required:true,
 			},
 			"picture": {
@@ -124,10 +124,10 @@ $(document).ready(function() {
 			},
 		},
 		messages:{
-			"congtyquangcao": {
+			"company": {
 				required:"Vui lòng nhập tên công ty!",
 			},
-			"website": {
+			"link": {
 				required:"Vui lòng nhập link Website của công ty !",
 			},
 			"picture": {
@@ -138,18 +138,18 @@ $(document).ready(function() {
 
 	$(".form-editQc").validate({
 		rules:{
-			"congtyquangcao": {
+			"company": {
 				required:true,
 			},
-			"website": {
+			"link": {
 				required:true,
 			},
 		},
 		messages:{
-			"congtyquangcao": {
+			"company": {
 				required:"Vui lòng nhập tên công ty!",
 			},
-			"website": {
+			"link": {
 				required:"Vui lòng nhập link Website của công ty !",
 			},
 		},
