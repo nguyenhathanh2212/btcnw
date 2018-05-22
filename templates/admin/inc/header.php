@@ -27,11 +27,14 @@
                 <li class="li-list-manage" >
                     <a href="/admin/category/?id=1"><i class="icon-cat fa fa-list-ul" aria-hidden="true"></i>Danh mục<span class="visited"></span></a>
                 </li>
-                <li class="li-list-manage">
-                    <a href="/admin/news/?id=2"><i class="icon-cat fa fa-map" aria-hidden="true"></i>Bài viết<span class="visited"></span></a>
+                <li class="li-list-manage" >
+                    <a href="/admin/users/?id=2"><i class="icon-cat fa fa-user" aria-hidden="true"></i>Người dùng<span class="visited"></span></a>
                 </li>
                 <li class="li-list-manage">
-                    <a href="/admin/advertisement/?id=4"><i class="icon-cat fa fa-money" aria-hidden="true"></i>Quảng cáo<span class="visited"></span></a>
+                    <a href="/admin/news/?id=3"><i class="icon-cat fa fa-map" aria-hidden="true"></i>Bài viết<span class="visited"></span></a>
+                </li>
+                <li class="li-list-manage">
+                    <a href="/admin/advertisement/?id=5"><i class="icon-cat fa fa-money" aria-hidden="true"></i>Quảng cáo<span class="visited"></span></a>
                 </li>
             </ul>
         </div>
@@ -46,9 +49,12 @@
                                 $trang="DANH MỤC";
                                 break;
                             case 2:
-                                $trang="BÀI VIẾT";
+                                $trang="NGƯỜI DÙNG";
                                 break;
                             case 3:
+                                $trang="BÀI VIẾT";
+                                break;
+                            case 4:
                                 $trang="BÌNH LUẬN";
                                 break;
                             

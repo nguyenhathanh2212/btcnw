@@ -23,48 +23,9 @@
             $description = $recruitment['description'];
             $phone = $recruitment['phone'];
         ?>
-        <?php
-            if(isset($_POST['edit'])){
-                $name = $_POST['name'];
-                $categoryId = $_POST['category_id'];
-                $salary = $_POST['salary'];
-                $location = $_POST['location'];
-                $phone = $_POST['phone'];
-                $pictureNew = $_FILES['picture']['name'];
-                $description = $_POST['description'];
-                $data = [
-                    'title' => $name,
-                    'category_id' => $categoryId,
-                    'salary' => $salary,
-                    'location' => $location,
-                    'phone' => $phone,
-                    'description' => $description
-                ];
-                if($pictureNew != ''){
-                    unlink($_SERVER['DOCUMENT_ROOT'] . '/files/' . $picture);
-                    $arPic = explode(".", $picture);
-                    $endPic = end($arPic);
-                    $newPicName = 'CNW-' . time() . '.' . $endPic;
-                    $path_upload = $_SERVER['DOCUMENT_ROOT'] . '/files/' . $newPicName;
-                    $tmp_name = $_FILES['picture']['tmp_name'];
-                    move_uploaded_file($tmp_name, $path_upload);
 
-                    $data['picture'] = $newPicName;
-                }
-
-                $result = $DB->update('recruitment', $data, "id = {$idTin}");
-
-                if ($result) {
-                    $session->set('msgSuccess', 'Sửa tin thành công!');
-                } else {
-                    $session->set('msgError', 'Sửa tin thất bại!');
-                }
-
-                header("location: /admin/news/");
-                exit();
-            }
-        ?>
-        <form method="post" action="" class="form-addtin" enctype="multipart/form-data">
+        <form method="post" action="process.php" class="form-addtin" enctype="multipart/form-data">
+            <input type="hidden" name="idTin" value="<?php echo $idTin ?>">
             <label class="left-login">Name : (*)</label>
             <div class="right-login">
                 <input class="input-right" type="text" name="name" value="<?php echo $title ?>">
