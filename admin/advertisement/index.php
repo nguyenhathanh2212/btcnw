@@ -17,7 +17,7 @@
 		<div class="header-content">
 			<a class="add" href="add.php"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</a>
 			<a class="delete-all" href="" id="delete-all-advertisements"><i class="fa fa-trash" aria-hidden="true"></i> Xóa tất cả</a>
-			<input type="text" name="search" class="search-box" id="search-advertisements">
+			<input type="text" name="search" class="search-box" id="search-advertisements" placeholder="Nhập nội dung tìm kiếm...">
 		</div>
 		<table width="100%"  class="tb-admin">
 			<tr>

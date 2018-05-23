@@ -12,7 +12,9 @@
 
 		// delete picture
 		foreach ($pictures as $picture) {
-			unlink($_SERVER['DOCUMENT_ROOT'] . '/files/' . $picture['picture']);
+			if (!empty($picture['picture'])) {
+				unlink($_SERVER['DOCUMENT_ROOT'] . '/files/' . $picture['picture']);
+			}
 		}
 
 		if ($result) {

@@ -66,4 +66,6 @@
         header("location: /admin/advertisement/");
         exit();
     }
-?>
+
+    header("location: /admin/advertisement/");
+
