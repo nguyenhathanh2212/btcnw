@@ -1,6 +1,7 @@
 <?php require_once $_SERVER['DOCUMENT_ROOT']."/templates/admin/inc/header.php"; ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT']."/functions/checkuser.php"; ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT']."/functions/replace.php"; ?>
+
 <?php if ($session->has('msgSuccess')) { ?>
     <div class="alert-message success">
         <?php echo $session->get('msgSuccess'); ?>
@@ -42,6 +43,8 @@
 	<div class="content ">
 		<div class="header-content">
 			<a class="add" href="add.php"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</a>
+			<a class="delete-all" href="" id="delete-all-news"><i class="fa fa-trash" aria-hidden="true"></i> Xóa tất cả</a>
+			<input type="text" name="search" class="search-box" id="search-news" placeholder="Nhập nội dung tìm kiếm...">
 			<div class="select-sort-new">
 				<ul>
 					<li>
@@ -68,10 +71,13 @@
 		</div>
 		<table width="100%"  class="tb-admin">
 			<tr>
-				<th width="5%">ID</th>
-	            <th width="30%">Tên bài đăng</th>
-	            <th width="18%">Danh mục</th>
-	            <th width="9%">Người đăng</th>
+				<th width="3%">
+                    <input type="checkbox" class="checkbox-delete-all">
+                </th>
+				<th width="5%">STT</th>
+	            <th width="27%">Tên bài đăng</th>
+	            <th width="17%">Danh mục</th>
+	            <th width="10%">Người đăng</th>
 	            <th width="10%">Ngày đăng</th>
 	            <th width="10%">Hình ảnh</th>
 	            <th width="8%">Bình luận</th>
@@ -85,13 +91,13 @@
 						$query = "SELECT recruitment.*, username, name FROM recruitment  
 						INNER JOIN category ON recruitment.category_id = category.id 
 						INNER JOIN users ON recruitment.user_id = users.id " . $where ." 
-						ORDER BY id DESC LIMIT {$offset}, {$rowCount}";
+						ORDER BY created_at DESC LIMIT {$offset}, {$rowCount}";
 						break;
 					case 2:
 						$query = "SELECT recruitment.*, username, name FROM recruitment 
 						INNER JOIN category ON recruitment.category_id = category.id 
-						INNER JOIN users ON recruitment.user_id = users.id " . $where ."  
-						ORDER BY id ASC LIMIT {$offset}, {$rowCount}";
+						INNER JOIN users ON recruitment.user_id = users.id " . $where ."
+						ORDER BY created_at ASC LIMIT {$offset}, {$rowCount}";
 						break;
 					case 3:
 						$query = "SELECT recruitment.*, username, name FROM recruitment
@@ -108,33 +114,37 @@
 				}
 
 				$results = $DB->select($query);
-
-				foreach ($results as $result) {
 			?>
-				<tr>
-					<td><?php echo $result['id'] ?></td>
-					<td><?php echo str_limit($result['title'], 30) ?></td>
-					<td><?php echo $result['name'] ?></td>
-					<td><?php echo $result['username'] ?></td>
-					<td><?php echo $result['created_at'] ?></td>
-					<td>
-						<?php 
-							if ($result['picture'] == ''){ ?>
-								<img style="height: 50px;" src="/files/salemacdinh.png" class="hoa" />
-						<?php } else { ?>
-							<img style="height: 50px;"  src="/files/<?php echo $result['picture'] ?>" class="hoa" />
-						<?php }?>
-					</td>
-					<td>
-						<a href="/admin/comment?idTin=<?php echo $result['id'] ?>" style="color: #00ff00; font-weight: bold;">Xem
-						</a>
-					</td>
-					<td >
-						<a href="edit.php?idTin=<?php echo $result['id'] ?>" class="fa fa-pencil">Sửa</a> |
-						<a href="del.php?idTin=<?php echo $result['id'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa tin ?');" class="fa fa-trash">Xóa</a>
-					</td>
-				</tr>	
-			<?php	}?>
+			<tbody id="show-news">
+				<?php foreach ($results as $key => $result) {?>
+					<tr>
+						<td>
+	                        <input type="checkbox" class="checkbox-delete"  val="<?php echo $result['id'] ?>" >
+	                    </td>
+						<td><?php echo '#' . ($key + 1) ?></td>
+						<td><?php echo str_limit($result['title'], 30) ?></td>
+						<td><?php echo $result['name'] ?></td>
+						<td><?php echo $result['username'] ?></td>
+						<td><?php echo $result['created_at'] ?></td>
+						<td>
+							<?php 
+								if ($result['picture'] == ''){ ?>
+									<img style="height: 50px;" src="/files/salemacdinh.png" class="hoa" />
+							<?php } else { ?>
+								<img style="height: 50px;"  src="/files/<?php echo $result['picture'] ?>" class="hoa" />
+							<?php }?>
+						</td>
+						<td>
+							<a href="/admin/comment?idTin=<?php echo $result['id'] ?>" style="color: #00ff00; font-weight: bold;">Xem
+							</a>
+						</td>
+						<td>
+							<a href="edit.php?idTin=<?php echo $result['id'] ?>" class="fa fa-pencil">Sửa</a> |
+							<a href="del.php?idTin=<?php echo $result['id'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa tin ?');" class="fa fa-trash">Xóa</a>
+						</td>
+					</tr>	
+				<?php	}?>
+			</tbody>
 		</table>
 		<div class="pagination">           
 			<div class="numbers">

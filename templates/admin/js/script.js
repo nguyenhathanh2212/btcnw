@@ -175,4 +175,114 @@ $(document).ready(function() {
 
 		return false;
 	});
+
+	$('.checkbox-delete-all').on('click', function () {
+    	var check = $(this).prop('checked');
+
+		$('.checkbox-delete').each(function () {
+			$(this).prop('checked', check ? 'checked' : '');
+		});
+    });
+
+    $('.checkbox-delete').on('click', function () {
+		var checks = [];
+
+		$('.checkbox-delete').each(function () {
+			if ($(this).prop('checked')) {
+				checks.push(1);
+			}
+		});
+
+		if (checks.length == 0 || checks.length != $('.checkbox-delete').length) {
+			$('.checkbox-delete-all').prop('checked', '');
+		} else if (checks.length == $('.checkbox-delete').length) {
+			$('.checkbox-delete-all').prop('checked', 'checked');
+		}
+    });
+
+    $('#delete-all-news').on('click', function () {
+    	var newsId = [];
+
+    	$('.checkbox-delete').each(function () {
+			if ($(this).prop('checked')) {
+				newsId.push(parseInt($(this).attr('val')));
+			}
+		});
+
+		if (!newsId.length) {
+			alert('Bạn chưa chọn dòng để xóa!')
+			return false;
+		}
+
+		if (!confirm('Bạn có chắc chắn muốn xóa tin tức đã chọn và toàn bộ thông tin trong đó?')) {
+    		return false;
+    	}
+
+		$.ajax({
+        	url: '/admin/news/delete-all.php',
+        	method: 'POST',
+        	data: {
+        		newsId: newsId
+        	}, 
+        	success: function (data) {}
+        });
+    });
+
+    $('#search-news').on('keyup', function () {
+        var data = $(this).val();
+
+        $.ajax({
+        	url: '/admin/news/search.php',
+        	method: 'POST',
+        	data: {
+        		searchData: data
+        	}, 
+        	success: function (data) {
+        		$('#show-news').html(data);
+        	}
+        });
+    });
+
+    $('#delete-all-advertisements').on('click', function () {
+    	var advertisementsId = [];
+
+    	$('.checkbox-delete').each(function () {
+			if ($(this).prop('checked')) {
+				advertisementsId.push(parseInt($(this).attr('val')));
+			}
+		});
+
+		if (!advertisementsId.length) {
+			alert('Bạn chưa chọn dòng để xóa!')
+			return false;
+		}
+
+		if (!confirm('Bạn có chắc chắn muốn xóa quảng cáo đã chọn ?')) {
+    		return false;
+    	}
+
+		$.ajax({
+        	url: '/admin/advertisement/delete-all.php',
+        	method: 'POST',
+        	data: {
+        		advertisementsId: advertisementsId
+        	}, 
+        	success: function (data) {}
+        });
+    });
+
+    $('#search-advertisements').on('keyup', function () {
+        var data = $(this).val();
+
+        $.ajax({
+        	url: '/admin/advertisement/search.php',
+        	method: 'POST',
+        	data: {
+        		searchData: data
+        	}, 
+        	success: function (data) {
+        		$('#show-advertisements').html(data);
+        	}
+        });
+    });
 });

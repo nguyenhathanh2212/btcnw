@@ -3,7 +3,7 @@
     <!--content-->
     <div class="content">
         <h2 class="tit"><i class="fa fa-shopping-cart"></i>  Thêm tin tuyển dụng</h2>
-        <form method="post" action="/admin/news/processAdd.php" class="form-addtin" enctype="multipart/form-data">
+        <form method="post" action="process.php" class="form-addtin" enctype="multipart/form-data">
             <label class="left-login">Name : (*)</label>
             <div class="right-login">
                 <input class="input-right" type="text" name="name">

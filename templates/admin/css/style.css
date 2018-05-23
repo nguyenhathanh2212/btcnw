@@ -46,7 +46,7 @@ h4.username {
 	border: 10px solid #F4F3EF;
 	border-radius: 30px;
 }
-.content .add {
+.content .add, .content .delete-all {
 	height: 35px;
 	line-height: 35px;
 	background: #ffbc42;
@@ -54,7 +54,17 @@ h4.username {
 	width: 80px;
 	text-align: center;
 	border-radius: 10px;
+	text-decoration: none;
+	color: #444;
+	margin-bottom: 10px;
 }
+
+.content .delete-all {
+	margin-left: 10px;
+	width: 100px;
+	background: #f71c1c;
+}
+
 .title-manage {
     line-height: 60px;
     margin: 0;
@@ -239,6 +249,7 @@ img.hoa {
 	border-bottom: 1px solid gray;
 	border-top: 1px solid gray;
 	border-radius: 8px;
+	text-decoration: none;
 }
 
 .header-content .select-sort-new ul li:hover a {
@@ -326,7 +337,18 @@ img.hoa {
     border: 2px solid #46cc2e;
 }
 
-a.add.advertisement {
-    display: block;
-    margin-bottom: 15px;
+.checkbox-delete, .checkbox-delete-all {
+	font-size: 20px;
+}
+
+.search-box {
+	margin-left: 50px;
+    width: 300px;
+    height: 30px;
+    border-radius: 15px;
+    padding: 0 10px;
+}
+
+.search-box:focus {
+	border-radius: 15px;
 }
