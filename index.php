@@ -160,7 +160,7 @@
 			<div class="sub-new">
 				<div class="list-sub-new wow fadeInUp">
 					<div class="header-list">
-						<div class="icon-index fa fa-paw"></div>
+						<div class="icon-index fa fa-user-md"></div>
 						<a href="/category/bac-si-1" title=""> BÁC SĨ</a>
 					</div>
 					<ul>
@@ -201,7 +201,7 @@
 				</div>
 				<div class="list-sub-new wow fadeInUp" data-wow-delay="0.5s">
 					<div class="header-list">
-						<div class="icon-index fa fa-car"></div>
+						<div class="icon-index fa fa-shopping-cart"></div>
 						<a href="/category/ban-hang-2" title="">BÁN HÀNG</a>
 					</div>
 					<ul>
@@ -242,7 +242,7 @@
 				</div>
 				<div class="list-sub-new wow fadeInUp">
 					<div class="header-list">
-						<div class="icon-index fa fa-laptop"></div>
+						<div class="icon-index fa fa-podcast"></div>
 						<a href="/category/bao-hiem-3" title="">BẢO HIỂM</a>
 					</div>
 					<ul>
@@ -324,7 +324,7 @@
 				</div>
 				<div class="list-sub-new wow fadeInUp">
 					<div class="header-list">
-						<div class="icon-index fa fa-female"></div>
+						<div class="icon-index fa fa-users"></div>
 						<a href="/category/phien-dich-5" title="">PHIÊN DỊCH</a>
 					</div>
 					<ul>
@@ -365,7 +365,7 @@
 				</div>
 				<div class="list-sub-new wow fadeInUp" data-wow-delay="0.5s">
 					<div class="header-list">
-						<div class="icon-index fa fa-bicycle"></div>
+						<div class="icon-index fa fa-ship"></div>
 						<a href="/category/co-khi-6" title="">CƠ KHÍ</a>
 					</div>
 					<ul>
@@ -406,7 +406,7 @@
 				</div>
 				<div class="list-sub-new wow fadeInUp">
 					<div class="header-list">
-						<div class="icon-index fa fa-user"></div>
+						<div class="icon-index fa fa-shirtsinbulk"></div>
 						<a href="/category/det-may-giay-da-7" title="">DỆT MAY - GIÀY DA</a>
 					</div>
 					<ul>
@@ -447,7 +447,7 @@
 				</div>
 				<div class="list-sub-new wow fadeInUp" data-wow-delay="0.5s">
 					<div class="header-list">
-						<div class="icon-index fa fa-cutlery"></div>
+						<div class="icon-index fa fa-user-circle"></div>
 						<a href="/category/duoc-si-8" title="">DƯỢC SĨ</a>
 					</div>
 					<ul>
@@ -488,7 +488,7 @@
 				</div>
 				<div class="list-sub-new wow fadeInUp">
 					<div class="header-list">
-						<div class="icon-index fa fa-shower"></div>
+						<div class="icon-index fa fa-laptop"></div>
 						<a href="/category/cong-nghe-thong-tin-9" title="">CÔNG NGHỆ THÔNG TIN</a>
 					</div>
 					<ul>
