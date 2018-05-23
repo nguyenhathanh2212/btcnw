@@ -1,24 +1,4 @@
 $(document).ready(function() {
-	$('.active').click(function(event) {
-		var active=0;
-		var id=$(this).val();
-		if($(this).prop("checked") == true){
-                active=1;
-        }
-		$.ajax({
-			url: '/admin/users/ajax.php',
-			type: 'POST',
-			data: {
-				act:active,
-				aid:id,
-			},
-			success: function(value){
-			},
-			error: function (){
-				alert('Có lỗi xảy ra');
-			}
-		});
-	});
 	jQuery.validator.setDefaults({
 	  success: "valid",
 	  ignore: [],
@@ -200,6 +180,7 @@ $(document).ready(function() {
 		}
     });
 
+    // news
     $('#delete-all-news').on('click', function () {
     	var newsId = [];
 
@@ -243,6 +224,7 @@ $(document).ready(function() {
         });
     });
 
+    // advertisement
     $('#delete-all-advertisements').on('click', function () {
     	var advertisementsId = [];
 
@@ -282,6 +264,50 @@ $(document).ready(function() {
         	}, 
         	success: function (data) {
         		$('#show-advertisements').html(data);
+        	}
+        });
+    });
+
+    // users
+    $('#delete-all-users').on('click', function () {
+    	var usersId = [];
+
+    	$('.checkbox-delete').each(function () {
+			if ($(this).prop('checked')) {
+				usersId.push(parseInt($(this).attr('val')));
+			}
+		});
+
+		if (!usersId.length) {
+			alert('Bạn chưa chọn dòng để xóa!')
+			return false;
+		}
+
+		if (!confirm('Bạn có chắc chắn muốn tất cả người dùng đã chọn ?')) {
+    		return false;
+    	}
+
+		$.ajax({
+        	url: '/admin/users/delete-all.php',
+        	method: 'POST',
+        	data: {
+        		usersId: usersId
+        	}, 
+        	success: function (data) {}
+        });
+    });
+
+    $('#search-users').on('keyup', function () {
+        var data = $(this).val();
+
+        $.ajax({
+        	url: '/admin/users/search.php',
+        	method: 'POST',
+        	data: {
+        		searchData: data
+        	}, 
+        	success: function (data) {
+        		$('#show-users').html(data);
         	}
         });
     });

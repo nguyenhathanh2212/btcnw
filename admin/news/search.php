@@ -18,7 +18,7 @@
 		$data = $DB->select($sql);
 
 		if (!count($data)) {
-            echo '<td colspan="10" class="notice">Không có tin nào nào</td>';
+            echo '<td colspan="10" class="notice">Không có dữ liệu</td>';
         }
 
 		$result = '';
