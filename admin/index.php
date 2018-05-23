@@ -1,6 +1,18 @@
 <?php require_once $_SERVER['DOCUMENT_ROOT']."/templates/admin/inc/header.php"; ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT']."/functions/checkuser.php"; ?>
 <!--content-->
+<?php if ($session->has('msgSuccess')) { ?>
+    <div class="alert-message success">
+        <?php echo $session->get('msgSuccess'); ?>
+        <?php $session->remove('msgSuccess'); ?>
+    </div>
+<?php } ?>
+<?php if ($session->has('msgError')) { ?>
+    <div class="alert-message error">
+        <?php echo $session->get('msgError'); ?>
+        <?php $session->remove('msgError'); ?>
+    </div>
+<?php } ?> 
 <div class="content">
 	<div>
 		<h2 style="font-size: 25px; text-align: center; margin: 30px 0px; font-weight: bold; color: #333;">

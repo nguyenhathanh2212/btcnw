@@ -1,7 +1,7 @@
     <!--footer-->
     <div class="footer row">
         <div class="left-footer">
-            <img src="" class="logo-left-footer">
+            <img src="/templates/public/images/logo.png" class="logo-left-footer">
             <h3>Theo dõi chúng tôi</h3>
             <div class="icon-left-footer">
                 <a href="" class="fa fa-facebook"></a>
